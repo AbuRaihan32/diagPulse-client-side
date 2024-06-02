@@ -12,6 +12,7 @@ import Reservations from "../Pages/Dashboard/AdminDashboard/Reservations/Reserva
 import AllTests from "../Pages/Dashboard/AdminDashboard/AllTests/AllTests";
 import Register from "../Pages/Register/Register";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Login from "../Pages/Login/Login";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
       },
     ],
   },

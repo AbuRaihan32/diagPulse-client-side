@@ -5,20 +5,19 @@ import { useForm } from "react-hook-form";
 import { BiLogInCircle } from "react-icons/bi";
 import { FaEye } from "react-icons/fa";
 import { RiEyeCloseFill } from "react-icons/ri";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import log from "../../../public/login.json";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 // import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
-  const { createUser } = useAuth();
+  const { createUser, logOut } = useAuth();
   const [error, setError] = useState("");
   const [district, setDistrict] = useState([]);
   const [upazila, setUpazila] = useState([]);
   const [show, setShow] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
   //   const axiosPublic = useAxiosPublic();
 
@@ -70,16 +69,18 @@ const Register = () => {
     }
     setError("");
 
-    //! sign in user
+    //! create user
     createUser(email, password)
       // const user = {email: email}
       .then(() => {
         Swal.fire({
-          title: "Logged In!",
-          text: "You have been Logged in.",
+          title: "Registered!",
+          text: "You have been Registered Successfully.",
           icon: "success",
         });
-        navigate(location?.state ? location?.state : "/");
+        logOut().then(() => {
+          navigate("/login");
+        });
       })
       .catch((err) => {
         Swal.fire({
@@ -105,7 +106,7 @@ const Register = () => {
               </div>
               <div className="w-full md:w-[60%] py-10 px-5 md:px-10">
                 <div className="text-center mb-3">
-                  <h1 className="font-bold text-3xl text-gray-900">SIGN IN</h1>
+                  <h1 className="font-bold text-3xl text-gray-900">SIGN UN</h1>
                   <p>Enter your information to Sign In</p>
                 </div>
 
@@ -277,7 +278,9 @@ const Register = () => {
                             <FaEye></FaEye>
                           )}
                         </div>
-                        <p className="text-red-600 font-medium text-[14px] ml-1">{error}</p>
+                        <p className="text-red-600 font-medium text-[14px] ml-1">
+                          {error}
+                        </p>
                         {errors.password && (
                           <span className="text-red-500 font-bold pl-3">
                             This field is required
@@ -324,7 +327,7 @@ const Register = () => {
 
                       <span className="flex items-center justify-center gap-2 relative">
                         <BiLogInCircle className="text-xl"></BiLogInCircle>{" "}
-                        <span className="hidden md:inline">Sign In</span>{" "}
+                        <span className="hidden md:inline">Sign Un</span>{" "}
                       </span>
                     </button>
                   </div>
