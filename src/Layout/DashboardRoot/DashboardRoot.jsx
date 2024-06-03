@@ -14,7 +14,9 @@ const DashboardRoot = () => {
         </div>
       </div>
       <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
-        <Outlet></Outlet>
+        <div className="w-[90%] mx-auto">
+          <Outlet></Outlet>
+        </div>
       </div>
     </div>
   );
