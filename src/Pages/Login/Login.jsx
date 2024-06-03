@@ -25,16 +25,7 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const {
-      blood,
-      confirmPassword,
-      district,
-      email,
-      image,
-      name,
-      password,
-      upazila,
-    } = data;
+    const { email, password } = data;
 
     //! sign in user
     signInUser(email, password)

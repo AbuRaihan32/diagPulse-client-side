@@ -9,17 +9,17 @@ import { Link, useNavigate } from "react-router-dom";
 import log from "../../../public/login.json";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-// import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
-  const { createUser, logOut } = useAuth();
+  const { createUser, logOut, updateUser } = useAuth();
   const [error, setError] = useState("");
   const [district, setDistrict] = useState([]);
   const [upazila, setUpazila] = useState([]);
   const [show, setShow] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
-  //   const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   //   get district
   useEffect(() => {
@@ -69,17 +69,33 @@ const Register = () => {
     }
     setError("");
 
+    const userInfo = {
+      name,
+      email,
+      image,
+      district,
+      upazila,
+      blood,
+    };
+
     //! create user
     createUser(email, password)
       // const user = {email: email}
       .then(() => {
-        Swal.fire({
-          title: "Registered!",
-          text: "You have been Registered Successfully.",
-          icon: "success",
-        });
-        logOut().then(() => {
-          navigate("/login");
+        // Save user info to database
+        axiosPublic.post("/user", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: "Registered!",
+              text: "You have been Registered Successfully.",
+              icon: "success",
+            });
+
+            updateUser(name, image).then(() => {});
+            logOut().then(() => {
+              navigate("/login");
+            });
+          }
         });
       })
       .catch((err) => {
