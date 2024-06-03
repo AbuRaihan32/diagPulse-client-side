@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const MyProfile = () => {
   const axiosPublic = useAxiosPublic();
@@ -10,25 +11,7 @@ const MyProfile = () => {
   const [upazila, setUpazila] = useState([]);
   const { user } = useAuth();
   const modalRef = useRef(null);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    const {
-      blood,
-      confirmPassword,
-      district,
-      email,
-      image,
-      name,
-      password,
-      upazila,
-    } = data;
-    console.log(data)
-  };
+  const { register, handleSubmit } = useForm();
 
   //   get district
   useEffect(() => {
@@ -48,18 +31,43 @@ const MyProfile = () => {
       });
   }, []);
 
-  const { data: profile = {} } = useQuery({
+  const { data: profile = {}, refetch } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/user?email=${user.email}`);
       return res.data;
     },
   });
-  console.log(profile);
+
   const [openSettings, setOpenSettings] = useState(false);
 
   const handleEdit = () => {
     modalRef.current.showModal();
+  };
+
+  const onSubmit = (data) => {
+    const { blood, district, image, name, upazila } = data;
+
+    const updatedUser = {
+      blood: blood ? blood : profile.blood,
+      district: district ? district : profile.district,
+      image: image ? image : profile.image,
+      name: name ? name : profile.name,
+      upazila: upazila ? upazila : profile.upazila,
+    };
+
+    // ! update profile
+    axiosPublic.patch(`/user/${profile._id}`, updatedUser).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          title: "Updated",
+          text: "Your Profile has been Updated.",
+          icon: "success",
+        });
+        modalRef.current.close();
+        refetch();
+      }
+    });
   };
 
   return (
@@ -319,11 +327,13 @@ const MyProfile = () => {
               </div>
 
               <div className="w-full mb-3">
-                <label className="text-xs font-semibold px-1">Your Email</label>
+                <label className="text-xs font-semibold px-1">
+                  Your Email (Not Editable)
+                </label>
                 <div className="flex flex-col">
                   <input
                     type="email"
-                    defaultValue={profile.email}
+                    value={profile.email}
                     className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="johnsmith@example.com"
                     {...register("email")}
@@ -346,26 +356,23 @@ const MyProfile = () => {
                   />
                 </div>
               </div>
-              {console.log(typeof profile.blood)}
               <div className="md:w-1/2 mb-3 ">
                 <label className="text-xs font-semibold px-1">
                   Blood Group
                 </label>
                 <div className="flex flex-col">
                   <select
-                    defaultValue={"B+"}
                     className="select select-bordered w-full"
                     {...register("blood")}
                   >
-                    <option>select your blood group</option>
-                    <option>A+</option>
-                    <option>A-</option>
-                    <option>B+</option>
-                    <option>B-</option>
-                    <option>AB+</option>
-                    <option>AB-</option>
-                    <option>O+</option>
-                    <option>O-</option>
+                    <option selected={profile.blood === "A+"}>A+</option>
+                    <option selected={profile.blood === "A-"}>A-</option>
+                    <option selected={profile.blood === "B+"}>B+</option>
+                    <option selected={profile.blood === "B-"}>B-</option>
+                    <option selected={profile.blood === "AB+"}>AB+</option>
+                    <option selected={profile.blood === "AB-"}>AB-</option>
+                    <option selected={profile.blood === "O+"}>O+</option>
+                    <option selected={profile.blood === "O-"}>O-</option>
                   </select>
                 </div>
               </div>
@@ -380,11 +387,13 @@ const MyProfile = () => {
                     className="select select-bordered w-full"
                     {...register("district")}
                   >
-                    <option>
-                      select your District
-                    </option>
                     {district.map((ds) => (
-                      <option key={ds.id} selected={ds.name === profile.district}>{ds.name}</option>
+                      <option
+                        key={ds.id}
+                        selected={ds.name === profile.district}
+                      >
+                        {ds.name}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -397,9 +406,13 @@ const MyProfile = () => {
                     className="select select-bordered w-full"
                     {...register("upazila")}
                   >
-                    <option>select your District</option>
                     {upazila.map((ds) => (
-                      <option key={ds.id} selected={ds.name === profile.upazila}>{ds.name}</option>
+                      <option
+                        key={ds.id}
+                        selected={ds.name === profile.upazila}
+                      >
+                        {ds.name}
+                      </option>
                     ))}
                   </select>
                 </div>
