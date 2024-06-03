@@ -4,11 +4,11 @@ import { Link, NavLink } from "react-router-dom";
 import { PuffLoader } from "react-spinners";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
-  const {user, logOut} = useAuth();
-
-
+  const { user, logOut } = useAuth();
+  const { isAdmin } = useAdmin();
 
   const NavLinks = (
     <>
@@ -27,35 +27,52 @@ const Navbar = () => {
 
       {user && (
         <>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
-                  : "py-[6px] px-3"
-              }
-              to={"/dashboard"}
-            >
-              Dashboard
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
+                      : "py-[6px] px-3"
+                  }
+                  to={"/dashboard/allUsers"}
+                >
+                 Admin Dashboard
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
+                      : "py-[6px] px-3"
+                  }
+                  to={"/dashboard/myProfile"}
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            </>
+          )}
         </>
       )}
     </>
   );
 
   const signOutBtnHandler = () => {
-    logOut()
-    .then(()=>{
+    logOut().then(() => {
       Swal.fire({
         title: "Logged Out!",
         text: "You have been Logged Out.",
         icon: "success",
       });
-    })
+    });
   };
 
-  
   return (
     <div className="navbar z-50 mt-6 lg:pr-8 mb-10">
       <div className="navbar-start">

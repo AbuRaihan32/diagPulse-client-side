@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
 import AdminNavbar from "../../Pages/Dashboard/Navbar/AdminNavbar";
 import UserNavbar from "../../Pages/Dashboard/Navbar/UserNavbar";
+import useAdmin from "../../Hooks/useAdmin";
 
 const DashboardRoot = () => {
-  const isAdmin = false;
+  const {isAdmin} = useAdmin();
   return (
     <div
       className={`min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white`}

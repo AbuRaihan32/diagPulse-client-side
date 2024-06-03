@@ -48,7 +48,7 @@ const Register = () => {
   const onSubmit = (data) => {
     const {
       blood,
-      confirmPassword,
+      // confirmPassword,
       district,
       email,
       image,
@@ -76,7 +76,8 @@ const Register = () => {
       district,
       upazila,
       blood,
-      status: 'active'
+      status: 'active', 
+      role: 'user'
     };
 
     //! create user

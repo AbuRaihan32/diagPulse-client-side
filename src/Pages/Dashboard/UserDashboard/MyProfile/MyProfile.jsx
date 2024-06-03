@@ -4,8 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAdmin from "../../../../Hooks/useAdmin";
 
 const MyProfile = () => {
+  const {isAdmin} = useAdmin();
   const axiosPublic = useAxiosPublic();
   const [district, setDistrict] = useState([]);
   const [upazila, setUpazila] = useState([]);
@@ -13,6 +15,8 @@ const MyProfile = () => {
   const modalRef = useRef(null);
   const { register, handleSubmit } = useForm();
 
+
+  console.log(isAdmin)
   //   get district
   useEffect(() => {
     fetch("/district.json")

@@ -1,9 +1,10 @@
-import { CiBoxes } from "react-icons/ci";
-import { FaUsers } from "react-icons/fa";
+import { CiBoxes, CiLineHeight } from "react-icons/ci";
+import { FaUser, FaUsers } from "react-icons/fa";
 import { FiAirplay } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { IoWalletOutline } from "react-icons/io5";
 import { LuWallet } from "react-icons/lu";
+import { MdOutlineResetTv } from "react-icons/md";
 import { PiFlagBannerFoldLight } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 
@@ -153,8 +154,63 @@ const AdminNavbar = () => {
             <span className="inline-flex justify-center items-center ml-4">
               <GoHome></GoHome>
             </span>
+            <span className="ml-2 text-sm tracking-wide truncate">Home</span>
+          </NavLink>
+        </li>
+
+        {/* My Profile */}
+        <li>
+          <NavLink
+            to={"/dashboard/myProfile"}
+            className={({ isActive }) =>
+              isActive
+                ? "relative flex flex-row items-center h-11 outline-none bg-blue-800 dark:bg-gray-600 text-white-600 text-white-800 border-l-4 border-blue-500 dark:border-gray-800 pr-6"
+                : "relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            }
+          >
+            <span className="inline-flex justify-center items-center ml-4">
+              <FaUser></FaUser>
+            </span>
             <span className="ml-2 text-sm tracking-wide truncate">
-              Home
+              My Profile
+            </span>
+          </NavLink>
+        </li>
+
+        {/* Upcoming Appointments*/}
+        <li>
+          <NavLink
+            to={"/dashboard/appointments"}
+            className={({ isActive }) =>
+              isActive
+                ? "relative flex flex-row items-center h-11 outline-none bg-blue-800 dark:bg-gray-600 text-white-600 text-white-800 border-l-4 border-blue-500 dark:border-gray-800 pr-6"
+                : "relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            }
+          >
+            <span className="inline-flex justify-center items-center ml-4">
+              <CiLineHeight></CiLineHeight>
+            </span>
+            <span className="ml-2 text-sm tracking-wide truncate">
+              Upcoming Appointments
+            </span>
+          </NavLink>
+        </li>
+
+        {/* Test Results */}
+        <li>
+          <NavLink
+            to={"/dashboard/testResult"}
+            className={({ isActive }) =>
+              isActive
+                ? "relative flex flex-row items-center h-11 outline-none bg-blue-800 dark:bg-gray-600 text-white-600 text-white-800 border-l-4 border-blue-500 dark:border-gray-800 pr-6"
+                : "relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            }
+          >
+            <span className="inline-flex justify-center items-center ml-4">
+              <MdOutlineResetTv></MdOutlineResetTv>
+            </span>
+            <span className="ml-2 text-sm tracking-wide truncate">
+              Test Results
             </span>
           </NavLink>
         </li>
