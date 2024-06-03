@@ -1,29 +1,20 @@
 import { Outlet } from "react-router-dom";
 import AdminNavbar from "../../Pages/Dashboard/Navbar/AdminNavbar";
 import UserNavbar from "../../Pages/Dashboard/Navbar/UserNavbar";
-import PublicNavbar from "../../Pages/Dashboard/Navbar/PublicNavbar";
-import Lottie from "lottie-react";
-import bg from "../../../public/bg1.json";
-import bg2 from "../../../public/bg2.json";
-import bg3 from "../../../public/bg3.json";
-
 
 const DashboardRoot = () => {
-  // TODO: get admin value from database
   const isAdmin = false;
-
   return (
-    <div className="max-w-7xl mx-auto flex">
-      <div className="w-[300px] bg-[#00247A] h-screen text-white p-10">
-        {isAdmin ? <AdminNavbar></AdminNavbar> : <UserNavbar></UserNavbar>}
-        <div className="divider divider-accent opacity-45"></div>
-        <PublicNavbar></PublicNavbar>
+    <div
+      className={`min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white`}
+    >
+      <div className="fixed flex flex-col left-0 w-14 hover:w-64 md:w-64 bg-blue-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
+        <div className="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
+          {isAdmin ? <AdminNavbar></AdminNavbar> : <UserNavbar></UserNavbar>}
+        </div>
       </div>
-      <div>
+      <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
         <Outlet></Outlet>
-        <Lottie animationData={bg}></Lottie>
-        <Lottie animationData={bg2}></Lottie>
-        <Lottie animationData={bg3}></Lottie>
       </div>
     </div>
   );

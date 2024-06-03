@@ -13,6 +13,7 @@ import AllTests from "../Pages/Dashboard/AdminDashboard/AllTests/AllTests";
 import Register from "../Pages/Register/Register";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
+import PrivateRouts from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login></Login>
+        element: <Login></Login>,
       },
     ],
   },
@@ -34,7 +35,11 @@ export const router = createBrowserRouter([
   // ! Dashboard
   {
     path: "/dashboard",
-    element: <DashboardRoot></DashboardRoot>,
+    element: (
+      <PrivateRouts>
+        <DashboardRoot></DashboardRoot>
+      </PrivateRouts>
+    ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       // Public Routes
