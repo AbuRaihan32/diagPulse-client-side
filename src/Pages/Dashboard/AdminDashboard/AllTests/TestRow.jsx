@@ -6,14 +6,10 @@ import { useRef } from "react";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 
-const UsersRow = ({ user, index }) => {
+const TestRow = ({ user, index }) => {
   const axiosSecure = useAxiosSecure();
   const modalRef = useRef(null);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const { name, email, image, status, role, _id } = user;
 
@@ -38,26 +34,26 @@ const UsersRow = ({ user, index }) => {
     };
 
     // update
-    // axiosSecure
-    //   .put(`/updateUser/${_id}`, newUser)
-    //   .then((data) => {
-    //     if (data.data.modifiedCount) {
-    //       Swal.fire({
-    //         title: "Updated",
-    //         text: "Your food has been updated.",
-    //         icon: "success",
-    //       });
-    //       modalRef.current.close();
-    //     } else {
-    //       Swal.fire({
-    //         icon: "error",
-    //         title: "Oops...",
-    //         text: "You didn't make any changes",
-    //       });
-    //       modalRef.current.close();
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
+    axiosSecure
+      .put(`/updateUser/${_id}`, newUser)
+      .then((data) => {
+        if (data.data.modifiedCount) {
+          Swal.fire({
+            title: "Updated",
+            text: "Your food has been updated.",
+            icon: "success",
+          });
+          modalRef.current.close();
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You didn't make any changes",
+          });
+          modalRef.current.close();
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   // ! handle delete
@@ -226,7 +222,7 @@ const UsersRow = ({ user, index }) => {
                   <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-[18deg] bg-gradient-to-r from-[#24BAD2] to-[#31EDAF] group-hover:bg-gradient-to-r hover:from-[#31EDAF] hover:to-[#24BAD2] group-hover:-skew-x-[18deg]"></span>
 
                   <span className="flex items-center justify-center gap-2 relative">
-                    <span className="">Download Details</span>{" "}
+                    <span className="">Save Change</span>{" "}
                   </span>
                 </button>
               </div>
@@ -251,9 +247,9 @@ const UsersRow = ({ user, index }) => {
   );
 };
 
-UsersRow.propTypes = {
+TestRow.propTypes = {
   user: PropTypes.object.isRequired,
   index: PropTypes.number,
 };
 
-export default UsersRow;
+export default TestRow;

@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types'
 const SectionHeder = ({header, description}) => {
     return (
         <div className="w-full my-8">
@@ -8,4 +8,8 @@ const SectionHeder = ({header, description}) => {
     );
 };
 
+SectionHeder.propTypes = {
+    header: PropTypes.string,
+    description: PropTypes.string
+}
 export default SectionHeder;
