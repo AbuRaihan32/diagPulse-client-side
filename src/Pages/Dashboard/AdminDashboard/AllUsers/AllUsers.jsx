@@ -8,7 +8,7 @@ import SectionHeder from '../../../../Components/SectionHeder'
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: allUsers = [], isPending } = useQuery({
+  const { data: allUsers = [], refetch, isPending } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
       const res = await axiosSecure.get('/users') 
@@ -56,6 +56,7 @@ const AllUsers = () => {
                 <UsersRow
                   key={user._id}
                   user={user}
+                  refetch={refetch}
                   index={index}
                 ></UsersRow>
               ))}

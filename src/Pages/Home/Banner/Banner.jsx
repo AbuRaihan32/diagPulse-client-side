@@ -11,16 +11,11 @@ import { PuffLoader } from "react-spinners";
 const Banner = () => {
   const axiosPublic = useAxiosPublic();
 
-  const {
-    data: bannerData = {},
-    refetch,
-    isPending,
-  } = useQuery({
+  const { data: bannerData = {}, isPending, isError} = useQuery({
     queryKey: ["banners"],
     queryFn: async () => {
-      const res = await fetch("/banner.json");
-      const data = await res.json();
-      return data;
+      const res = await axiosPublic.get("/activeBanner?status=Active");
+      return res.data;
     },
   });
 
@@ -28,6 +23,13 @@ const Banner = () => {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
         <PuffLoader color="#32cd32"></PuffLoader>
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="w-full h-[200px] flex items-center justify-center">
+        <span className="text-xl">Something went wrong</span>
       </div>
     );
   }

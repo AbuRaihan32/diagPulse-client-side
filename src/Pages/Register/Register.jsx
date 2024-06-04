@@ -76,8 +76,8 @@ const Register = () => {
       district,
       upazila,
       blood,
-      status: 'active', 
-      role: 'user'
+      status: 'Active', 
+      role: 'User'
     };
 
     //! create user
