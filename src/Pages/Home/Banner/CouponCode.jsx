@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types'
 
 const CouponCode = ({code}) => {
   const [copied, setCopied] = useState(false);
@@ -42,10 +43,12 @@ const CouponCode = ({code}) => {
           )}
         </div>
       </div>
-
-      <p className="text-sm">Valid Till: 20Dec, 2021</p>
     </div>
   );
 };
+
+CouponCode.propTypes = {
+    code: PropTypes.string.isRequired
+}
 
 export default CouponCode;

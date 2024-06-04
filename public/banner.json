@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Summer Sale",
+    "image": "https://example.com/images/summer-sale.jpg",
+    "bgImage": "https://example.com/images/summer-bg.jpg",
+    "text": "Enjoy our exclusive summer sale with up to 50% off!",
+    "couponCode": "SUMMER50",
+    "discountRate": "50%",
+    "expireDate": "2024-06-30"
+  },
+  {
+    "id": 2,
+    "title": "Back to School",
+    "image": "https://example.com/images/back-to-school.jpg",
+    "bgImage": "https://example.com/images/school-bg.jpg",
+    "text": "Get ready for school with amazing discounts on supplies.",
+    "couponCode": "SCHOOL20",
+    "discountRate": "20%",
+    "expireDate": "2024-09-15"
+  },
+  {
+    "id": 3,
+    "title": "Black Friday Deals",
+    "image": "https://example.com/images/black-friday.jpg",
+    "bgImage": "https://example.com/images/black-friday-bg.jpg",
+    "text": "Don't miss out on our Black Friday specials!",
+    "couponCode": "BLACKFRIDAY",
+    "discountRate": "70%",
+    "expireDate": "2024-11-29"
+  },
+  {
+    "id": 4,
+    "title": "Holiday Savings",
+    "image": "https://example.com/images/holiday.jpg",
+    "bgImage": "https://example.com/images/holiday-bg.jpg",
+    "text": "Celebrate the holidays with great savings on all products.",
+    "couponCode": "HOLIDAY30",
+    "discountRate": "30%",
+    "expireDate": "2024-12-31"
+  }
+]
