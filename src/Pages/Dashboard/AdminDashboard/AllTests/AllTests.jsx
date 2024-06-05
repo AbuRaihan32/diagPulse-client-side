@@ -3,15 +3,15 @@ import { PuffLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import TestRow from "./TestRow";
-import SectionHeder from '../../../../Components/SectionHeder';
+import SectionHeder from "../../../../Components/SectionHeder";
 
 const AllTests = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: allUsers = [], isPending } = useQuery({
-    queryKey: ["allUsers"],
+  const { data: allTests = [], isPending, refetch } = useQuery({
+    queryKey: ["allTests"],
     queryFn: async () => {
-      const res = await axiosSecure.get('/users') 
+      const res = await axiosSecure.get('/tests')
       return res.data;
     },
   });
@@ -30,9 +30,12 @@ const AllTests = () => {
         <title>DiagPulse || All Tests</title>
       </Helmet>
 
-      <SectionHeder header={'manage all Tests'}  description={'Hi Admin! You Can Handle All tests added by admins'}></SectionHeder>
+      <SectionHeder
+        header={"manage all Tests"}
+        description={"Hi Admin! You Can Handle All tests added by admins"}
+      ></SectionHeder>
 
-      {allUsers?.length < 1 ? (
+      {allTests?.length < 1 ? (
         <div className="w-full h-[300px] flex items-center justify-center font-semibold text-4xl">
           <div className="text-center">No Test Available</div>
         </div>
@@ -48,16 +51,12 @@ const AllTests = () => {
                 <th>Status</th>
                 <th>Role</th>
                 <th>Update</th>
-                <th> Delete </th>
+                <th>Delete </th>
               </tr>
             </thead>
             <tbody>
-              {allUsers.map((user, index) => (
-                <TestRow
-                  key={user._id}
-                  user={user}
-                  index={index}
-                ></TestRow>
+              {allTests.map((test, index) => (
+                <TestRow key={test._id} test={test} index={index} refetch={refetch}></TestRow>
               ))}
             </tbody>
           </table>

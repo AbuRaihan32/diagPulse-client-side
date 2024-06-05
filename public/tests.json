@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Complete Blood Count (CBC)",
+    "description": "A Complete Blood Count (CBC) is a common blood test that evaluates the overall health of your blood and body. It measures various components of blood, including red blood cells (RBCs), white blood cells (WBCs), and platelets. RBCs carry oxygen from the lungs to the rest of the body, WBCs help fight infection and platelets aid in blood clotting. The CBC provides important information about your body's immune system, oxygen-carrying capacity, and clotting ability. Abnormal CBC results can indicate various blood disorders such as anemia, infection, inflammation, or leukemia.",
+    "category": "Hematology",
+    "image": "https://i.ibb.co/Qkngqn3/pexels-shvetsa-3786166.jpg",
+    "sample_type": "Blood",
+    "purpose": "To diagnose various blood disorders such as anemia, infection, or leukemia.",
+    "results_timeFrame": "Typically within a few hours.",
+    "is_invasive": false
+  },
+  {
+    "name": "X-Ray",
+    "description": "An X-ray is a diagnostic imaging technique that uses electromagnetic radiation to produce images of internal structures in the body. It is commonly used to visualize bones and detect abnormalities such as fractures, dislocations, or bone infections. X-rays can also be used to identify conditions affecting the lungs, such as pneumonia or lung cancer. The procedure is quick, painless, and non-invasive, making it a valuable tool in medical diagnosis.",
+    "category": "Radiology",
+    "image": "https://i.ibb.co/8jwMqBx/pexels-pavel-danilyuk-6812456.jpg",
+    "sample_type": "N/A",
+    "purpose": "To diagnose fractures, lung infections, or other abnormalities in bones and soft tissues.",
+    "results_timeFrame": "Immediately",
+    "is_invasive": false
+  },
+  {
+    "name": "Electrocardiogram (ECG or EKG)",
+    "description": "An Electrocardiogram (ECG or EKG) is a non-invasive test that records the electrical activity of the heart over a period of time. It is commonly used to detect and diagnose heart rhythm abnormalities, such as arrhythmias, and to evaluate the overall health of the heart. During an ECG, electrodes are placed on the skin, and the electrical signals produced by the heart are recorded and displayed on a monitor. The test is painless and typically takes only a few minutes to complete.",
+    "category": "Cardiology",
+    "image": "https://i.ibb.co/hFdjfSW/pexels-pavel-danilyuk-7108350.jpg",
+    "sample_type": "N/A",
+    "purpose": "To diagnose heart rhythm abnormalities or detect heart damage.",
+    "results_timeFrame": "Immediate",
+    "is_invasive": false
+  },
+  {
+    "name": "Magnetic Resonance Imaging (MRI)",
+    "description": "Magnetic Resonance Imaging (MRI) is a non-invasive imaging technique that uses strong magnetic fields and radio waves to produce detailed images of internal structures in the body. It is commonly used to visualize the brain, spine, joints, and soft tissues, providing valuable information for the diagnosis and treatment of various medical conditions. MRI is particularly useful for detecting tumors, brain disorders, spinal injuries, and musculoskeletal conditions. The procedure is painless but may require the patient to remain still for an extended period of time.",
+    "category": "Radiology",
+    "image": "https://i.ibb.co/BqSKjYJ/pexels-contact-me-923323219715-262056873-13176358.jpg",
+    "sample_type": "N/A",
+    "purpose": "To diagnose tumors, brain disorders, or musculoskeletal injuries.",
+    "results_timeFrame": "Within a few hours to days.",
+    "is_invasive": false
+  },
+  {
+    "name": "Urinalysis",
+    "description": "Urinalysis is a common diagnostic test that analyzes a urine sample for various substances and cells. It provides valuable information about kidney function, urinary tract infections, diabetes, and other medical conditions. During urinalysis, the physical, chemical, and microscopic properties of the urine are evaluated. This includes examining the color, clarity, pH, protein, glucose, ketones, blood cells, and bacteria present in the urine. Abnormal urinalysis results may indicate the presence of a urinary tract infection, kidney disease, diabetes, or other medical conditions.",
+    "category": "Clinical Pathology",
+    "image": "https://i.ibb.co/1spTXfq/pexels-zeoxs-11730899.jpg",
+    "sample_type": "Urine",
+    "purpose": "To diagnose urinary tract infections, kidney disorders, or diabetes.",
+    "results_timeFrame": "Within 24 hours.",
+    "is_invasive": false
+  },
+  {
+    "name": "Polymerase Chain Reaction (PCR)",
+    "description": "Polymerase Chain Reaction (PCR) is a molecular biology technique used to amplify and detect specific DNA sequences in a sample. It is widely used in medical diagnosis, genetic testing, and scientific research. PCR involves a series of temperature cycles that cause DNA to replicate, resulting in millions of copies of the target DNA sequence. These copies can then be detected and analyzed using various methods, such as gel electrophoresis or fluorescent probes. PCR is highly sensitive and specific, making it ideal for diagnosing infectious diseases, genetic disorders, and detecting pathogens.",
+    "category": "Molecular Biology",
+    "image": "https://i.ibb.co/mF6X5ZT/pexels-jsa2021-4299462.jpg",
+    "sample_type": "Various, including blood, saliva, or tissue.",
+    "purpose": "To diagnose infectious diseases, genetic disorders, and detect pathogens.",
+    "results_timeFrame": "Typically within a few hours.",
+    "is_invasive": false
+  },
+  {
+    "name": "Blood Glucose Test",
+    "description": "A blood glucose test measures the concentration of glucose (sugar) in the blood. It is commonly used to diagnose diabetes and monitor blood sugar levels in people with diabetes. Glucose levels in the blood are regulated by the hormone insulin, which helps cells absorb glucose from the bloodstream. Abnormal blood glucose levels can indicate diabetes, hypoglycemia (low blood sugar), or hyperglycemia (high blood sugar). The test may be performed using a blood sample obtained from a finger prick or a venous blood draw.",
+    "category": "Clinical Chemistry",
+    "image": "https://i.ibb.co/yQ4xbx5/pexels-artempodrez-6823480.jpg",
+    "sample_type": "Blood",
+    "purpose": "To diagnose diabetes and monitor blood sugar levels.",
+    "results_timeFrame": "Within minutes.",
+    "is_invasive": true
+  },
+  {
+    "name": "Stool Culture",
+    "description": "A stool culture is a laboratory test that examines a stool sample for the presence of bacteria, parasites, or other microorganisms. It is commonly used to diagnose gastrointestinal infections caused by bacteria, such as Salmonella, Shigella, or Campylobacter, or parasites, such as Giardia or Cryptosporidium. During the test, the stool sample is placed in a special medium that encourages the growth of bacteria and other microorganisms. After a period of incubation, the sample is examined under a microscope to identify any pathogens present.",
+    "category": "Microbiology",
+    "image": "https://i.ibb.co/9N1tvDK/pexels-ivan-samkov-9628798.jpg",
+    "sample_type": "Stool",
+    "purpose": "To diagnose gastrointestinal infections caused by bacteria or parasites.",
+    "results_timeFrame": "Within a few days.",
+    "is_invasive": false
+  },
+  {
+    "name": "Pap Smear",
+    "description": "A Pap smear, also known as a Pap test, is a screening test used to detect cervical cancer and precancerous changes in the cervix. It involves collecting cells from the cervix, which are then examined under a microscope for abnormalities. The test can also detect infections, such as human papillomavirus (HPV), which can increase the risk of cervical cancer. Pap smears are recommended for women starting at age 21 and should be performed every few years, depending on age and risk factors.",
+    "category": "Cytology",
+    "image": "https://i.ibb.co/0YY13mm/pexels-artempodrez-5726794.jpg",
+    "sample_type": "Cervical cells",
+    "purpose": "To detect cervical cancer and precancerous changes in the cervix.",
+    "results_timeFrame": "Within a few weeks.",
+    "is_invasive": true
+  },
+  {
+    "name": "Blood Culture",
+    "description": "A blood culture is a laboratory test used to detect the presence of bacteria or fungi in the bloodstream. It is commonly performed in patients with suspected bloodstream infections, such as sepsis or bacteremia. During the test, a sample of blood is collected and incubated in a special medium that encourages the growth of microorganisms. After a period of incubation, the sample is examined under a microscope to identify any pathogens present. Blood cultures are essential for diagnosing and treating bloodstream infections.",
+    "category": "Microbiology",
+    "image": "https://i.ibb.co/DfRfZsH/pexels-karolina-grabowska-6627687.jpg",
+    "sample_type": "Blood",
+    "purpose": "To diagnose bloodstream infections such as sepsis or bacteremia.",
+    "results_timeFrame": "Within a few days.",
+    "is_invasive": true
+  },
+  {
+    "name": "Lipid Panel",
+    "description": "A lipid panel is a blood test that measures levels of cholesterol and other fats (lipids) in the bloodstream. It provides valuable information about a person's risk of heart disease and stroke. The test typically measures total cholesterol, LDL (bad) cholesterol, HDL (good) cholesterol, and triglycerides. High levels of LDL cholesterol and triglycerides, and low levels of HDL cholesterol, are associated with an increased risk of heart disease. Lipid panels are often performed as part of routine health screenings or to monitor cholesterol-lowering treatments.",
+    "category": "Clinical Chemistry",
+    "image": "https://i.ibb.co/kS761rc/pexels-pixabay-256262.jpg",
+    "sample_type": "Blood",
+    "purpose": "To assess the risk of heart disease and stroke.",
+    "results_timeFrame": "Within a few days.",
+    "is_invasive": true
+  },
+  {
+    "name": "Thyroid Function Tests",
+    "description": "Thyroid function tests are a group of blood tests used to measure levels of thyroid hormones in the bloodstream. The thyroid gland produces hormones that regulate metabolism, energy production, and growth. Thyroid function tests can help diagnose thyroid disorders such as hypothyroidism (underactive thyroid) or hyperthyroidism (overactive thyroid). The tests typically measure levels of thyroid-stimulating hormone (TSH), thyroxine (T4), and triiodothyronine (T3). Abnormal thyroid function test results may indicate a thyroid disorder, which can be treated with medication.",
+    "category": "Endocrinology",
+    "image": "https://i.ibb.co/PtXdPTx/pexels-polina-tankilevitch-3735709.jpg",
+    "sample_type": "Blood",
+    "purpose": "To diagnose thyroid disorders such as hypothyroidism or hyperthyroidism.",
+    "results_timeFrame": "Within a few days.",
+    "is_invasive": true
+  },
+  {
+    "name": "Liver Function Tests",
+    "description": "Liver function tests are a group of blood tests used to assess the health and function of the liver. The liver performs many vital functions in the body, including metabolizing nutrients, detoxifying harmful substances, and producing proteins necessary for blood clotting. Liver function tests measure levels of enzymes and proteins in the blood that indicate liver damage or dysfunction. Abnormal liver function test results may indicate liver disease, such as hepatitis, cirrhosis, or fatty liver disease.",
+    "category": "Clinical Chemistry",
+    "image": "https://i.ibb.co/nfjQTFY/pexels-yaodong-che-83494495-10792746.jpg",
+    "sample_type": "Blood",
+    "purpose": "To diagnose liver diseases or monitor liver function.",
+    "results_timeFrame": "Within a few days.",
+    "is_invasive": true
+  },
+  {
+    "name": "C-reactive Protein (CRP) Test",
+    "description": "The C-reactive protein (CRP) test measures levels of CRP, a marker of inflammation, in the bloodstream. CRP is produced by the liver in response to inflammation or infection in the body. Elevated CRP levels may indicate the presence and severity of inflammation, which can be caused by various medical conditions, such as infections, autoimmune disorders, or cardiovascular disease. The CRP test is often used to assess the risk of heart disease or monitor the effectiveness of treatment for inflammatory conditions.",
+    "category": "Clinical Chemistry",
+    "image": "https://i.ibb.co/h8KjT2G/pexels-chokniti-khongchum-1197604-3082455.jpg",
+    "sample_type": "Blood",
+    "purpose": "To assess the presence and severity of inflammation in the body.",
+    "results_timeFrame": "Within a few hours.",
+    "is_invasive": true
+  },
+  {
+    "name": "Hemoglobin A1c Test",
+    "description": "The Hemoglobin A1c test, also known as HbA1c or glycated hemoglobin test, measures average blood sugar levels over the past 2-3 months. It provides valuable information about long-term blood sugar control in people with diabetes. Hemoglobin A1c is a form of hemoglobin that becomes glycated when blood sugar levels are high. The test is commonly used to monitor blood sugar levels in people with diabetes and assess their risk of developing complications, such as heart disease, kidney disease, or nerve damage.",
+    "category": "Clinical Chemistry",
+    "image": "https://i.ibb.co/0fg5jzy/61790-a1cunreliable-87810528-m.jpg",
+    "sample_type": "Blood",
+    "purpose": "To monitor long-term blood sugar control in people with diabetes.",
+    "results_timeFrame": "Within a few days.",
+    "is_invasive": true
+  }
+]

@@ -6,12 +6,24 @@ import { useRef } from "react";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 
-const TestRow = ({ user, index }) => {
+const TestRow = ({ test, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const modalRef = useRef(null);
   const { register, handleSubmit } = useForm();
 
-  const { name, email, image, status, role, _id } = user;
+  const {
+    _id,
+    name,
+    description,
+    category,
+    image,
+    sample_type,
+    purpose,
+    results_timeFrame,
+    is_invasive,
+  } = test;
+
+  console.log(test)
 
   // ! handle Update
   const handleUpdate = () => {
@@ -20,22 +32,33 @@ const TestRow = ({ user, index }) => {
 
   // ! confirm Update
   const onSubmit = (data) => {
-    const { name, email, image, district, upazila, blood, status, role } = data;
-
-    const newUser = {
+    const {
       name,
-      email,
+      description,
+      category,
       image,
-      district,
-      upazila,
-      blood,
-      status,
-      role,
+      sample_type,
+      purpose,
+      results_timeFrame,
+      is_invasive,
+    } = data;
+
+    const newTest = {
+      name,
+      description,
+      category,
+      image,
+      sample_type,
+      purpose,
+      results_timeFrame,
+      is_invasive,
     };
+
+    console.log(newTest)
 
     // update
     axiosSecure
-      .put(`/updateUser/${_id}`, newUser)
+      .put(``, newTest)
       .then((data) => {
         if (data.data.modifiedCount) {
           Swal.fire({
@@ -69,7 +92,7 @@ const TestRow = ({ user, index }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .delete(`/deleteUser/${_id}`)
+          .delete(`/tests/${_id}`)
           .then((data) => {
             if (data.data.deletedCount === 1) {
               Swal.fire({
@@ -77,6 +100,7 @@ const TestRow = ({ user, index }) => {
                 text: "Your food has been Deleted.",
                 icon: "success",
               });
+              refetch()
             }
           })
           .catch((err) => console.log(err));
@@ -92,7 +116,7 @@ const TestRow = ({ user, index }) => {
           <div className="flex items-center gap-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={image} alt="Avatar Tailwind CSS Component" />
+                <img src={image} alt="Avatar" />
               </div>
             </div>
             <div>
@@ -100,12 +124,12 @@ const TestRow = ({ user, index }) => {
             </div>
           </div>
         </td>
-        <td>{email}</td>
-        <td>{status}</td>
-        <td>{role}</td>
+        <td>{category}</td>
+        <td>{sample_type}</td>
+        <td>{purpose}</td>
         <td>
           <button
-            onClick={() => handleUpdate(_id)}
+            onClick={() => handleUpdate()}
             className="btn btn-circle btn-outline"
           >
             <CiEdit className="text-xl"></CiEdit>
@@ -113,7 +137,7 @@ const TestRow = ({ user, index }) => {
         </td>
         <td>
           <button
-            onClick={() => handleDelete(_id)}
+            onClick={() => handleDelete()}
             className="btn btn-circle btn-outline"
           >
             <RiDeleteBin6Line></RiDeleteBin6Line>
@@ -128,7 +152,7 @@ const TestRow = ({ user, index }) => {
             {/* row 1 */}
             <div className="md:flex gap-4 ">
               <div className="w-full mb-3">
-                <label className="text-xs font-semibold px-1">Your Name</label>
+                <label className="text-xs font-semibold px-1">Test Name</label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -142,15 +166,15 @@ const TestRow = ({ user, index }) => {
 
               <div className="w-full mb-3">
                 <label className="text-xs font-semibold px-1">
-                  Your Email (Not Editable)
+                  Category
                 </label>
                 <div className="flex flex-col">
                   <input
                     type="email"
-                    value={email}
+                    defaultValue={category}
                     className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="johnsmith@example.com"
-                    {...register("email")}
+                    {...register("category")}
                   />
                 </div>
               </div>
@@ -159,7 +183,7 @@ const TestRow = ({ user, index }) => {
             {/* row 2 */}
             <div className="md:flex gap-4">
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">Photo URL</label>
+                <label className="text-xs font-semibold px-1">Test Image</label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -172,15 +196,15 @@ const TestRow = ({ user, index }) => {
               </div>
               <div className="md:w-1/2 mb-3 ">
                 <label className="text-xs font-semibold px-1">
-                  Blood Group
+                  Description
                 </label>
                 <div className="flex flex-col">
                   <input
                     type="text"
-                    defaultValue={image}
+                    defaultValue={description}
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="Photo URL"
-                    {...register("image")}
+                    {...register("description")}
                   />
                 </div>
               </div>
@@ -189,27 +213,56 @@ const TestRow = ({ user, index }) => {
             {/* row 3 */}
             <div className="md:flex gap-4">
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">District</label>
+                <label className="text-xs font-semibold px-1">Sample Type</label>
                 <div className="flex flex-col">
                   <input
                     type="text"
-                    defaultValue={image}
+                    defaultValue={sample_type}
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="Photo URL"
-                    {...register("image")}
+                    {...register("sample_type")}
                   />
                 </div>
               </div>
 
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">Upazila</label>
+                <label className="text-xs font-semibold px-1">Purpose</label>
                 <div className="flex flex-col">
                   <input
                     type="text"
-                    defaultValue={image}
+                    defaultValue={purpose}
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="Photo URL"
-                    {...register("image")}
+                    {...register("purpose")}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* row 4 */}
+            <div className="md:flex gap-4">
+              <div className="md:w-1/2 mb-3">
+                <label className="text-xs font-semibold px-1">Results Time Frame</label>
+                <div className="flex flex-col">
+                  <input
+                    type="text"
+                    defaultValue={results_timeFrame}
+                    className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                    placeholder="Photo URL"
+                    {...register("results_timeFrame")}
+                  />
+                </div>
+              </div>
+
+              <div className="md:w-1/2 mb-3">
+                <label className="text-xs font-semibold px-1">Is Invasive</label>
+                <div className="flex flex-col">
+                  <input
+                    type="text"
+                    defaultValue={is_invasive}
+                    className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                    placeholder="Photo URL"
+                    {...register("is_invasive")}
                   />
                 </div>
               </div>
@@ -248,7 +301,7 @@ const TestRow = ({ user, index }) => {
 };
 
 TestRow.propTypes = {
-  user: PropTypes.object.isRequired,
+  test: PropTypes.object.isRequired,
   index: PropTypes.number,
 };
 

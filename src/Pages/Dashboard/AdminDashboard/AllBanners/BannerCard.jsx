@@ -119,7 +119,7 @@ const BannerCard = ({ banner, index, refetch }) => {
             <img
               src={image}
               alt="image"
-              className="w-40 h-32 object-cover absolute right-0 top-[30%] border-4 border-r-0 rounded-l-full border-[#1E40AF]"
+              className="w-48 h-36 object-cover absolute right-0 border-4 border-r-0 border-t-0 rounded-bl-[150px] border-[#1E40AF]"
             />
           </div>
           {/* <img src={image} alt="image" className="object-cover absolute z-10 w-40 h-32 top-[30%] left-[25%]" /> */}

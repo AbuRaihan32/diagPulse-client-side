@@ -25,6 +25,19 @@ const Navbar = () => {
         </NavLink>
       </li>
 
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
+              : "py-[6px] px-3"
+          }
+          to={"/allTestForUser"}
+        >
+          All Tests
+        </NavLink>
+      </li>
+
       {user && (
         <>
           {isAdmin ? (
@@ -38,7 +51,7 @@ const Navbar = () => {
                   }
                   to={"/dashboard/allUsers"}
                 >
-                 Admin Dashboard
+                  Admin Dashboard
                 </NavLink>
               </li>
             </>

@@ -15,6 +15,8 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import PrivateRouts from "./PrivateRoutes";
 import Home from "../Pages/Home/Home/Home";
+import AllTestsForUser from "../Pages/AllTestsFoUser/AllTestsForUser";
+
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path: '/allTestForUser',
+        element: <AllTestsForUser></AllTestsForUser>
       },
       {
         path: "/register",
