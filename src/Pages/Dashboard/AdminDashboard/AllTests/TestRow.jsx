@@ -23,8 +23,6 @@ const TestRow = ({ test, index, refetch }) => {
     is_invasive,
   } = test;
 
-  console.log(test)
-
   // ! handle Update
   const handleUpdate = () => {
     modalRef.current.showModal();
@@ -54,11 +52,9 @@ const TestRow = ({ test, index, refetch }) => {
       is_invasive,
     };
 
-    console.log(newTest)
-
     // update
     axiosSecure
-      .put(``, newTest)
+      .patch(`/tests/${_id}`, newTest)
       .then((data) => {
         if (data.data.modifiedCount) {
           Swal.fire({
@@ -67,6 +63,7 @@ const TestRow = ({ test, index, refetch }) => {
             icon: "success",
           });
           modalRef.current.close();
+          refetch()
         } else {
           Swal.fire({
             icon: "error",
@@ -170,7 +167,7 @@ const TestRow = ({ test, index, refetch }) => {
                 </label>
                 <div className="flex flex-col">
                   <input
-                    type="email"
+                    type="text"
                     defaultValue={category}
                     className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="johnsmith@example.com"
@@ -302,6 +299,7 @@ const TestRow = ({ test, index, refetch }) => {
 
 TestRow.propTypes = {
   test: PropTypes.object.isRequired,
+  refetch: PropTypes.func.isRequired,
   index: PropTypes.number,
 };
 

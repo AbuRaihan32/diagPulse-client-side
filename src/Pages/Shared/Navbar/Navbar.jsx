@@ -1,5 +1,4 @@
 import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
-import { RiEye2Line } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
 import { PuffLoader } from "react-spinners";
 import useAuth from "../../../Hooks/useAuth";
@@ -87,7 +86,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar z-50 mt-6 lg:pr-8 mb-10">
+    <div className="navbar z-50 lg:pr-8 mb-10">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -140,12 +139,7 @@ const Navbar = () => {
           </ul>
         </div>
         <a className="flex items-center gap-2 pl-2 text-xl md:text-3xl font-bold">
-          YummyF
-          <span className="text-xl md:text-3xl flex -mr-2 -ml-2 font-extrabold text-[#32CD32]">
-            <RiEye2Line></RiEye2Line>
-            <RiEye2Line className="-ml-[3px] rotate-90"></RiEye2Line>
-          </span>{" "}
-          D
+          DiagPulse
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

@@ -54,7 +54,7 @@ const Banner = () => {
         </Swiper>
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <div className="area">
           <ul className="circles">
             <li></li>
@@ -69,7 +69,7 @@ const Banner = () => {
             <li></li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
