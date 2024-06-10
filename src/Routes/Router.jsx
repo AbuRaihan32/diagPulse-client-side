@@ -34,8 +34,8 @@ export const router = createBrowserRouter([
         element: <AllTestsForUser></AllTestsForUser>
       },
       {
-        path: '/details/:id',
-        element: <Details></Details>
+        path: 'details/:id',
+        element: <PrivateRouts><Details></Details></PrivateRouts>
       },
       {
         path: "/register",

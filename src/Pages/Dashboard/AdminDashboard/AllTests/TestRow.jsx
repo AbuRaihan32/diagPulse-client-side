@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 const TestRow = ({ test, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const modalRef = useRef(null);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const {
     _id,
@@ -21,6 +21,7 @@ const TestRow = ({ test, index, refetch }) => {
     purpose,
     results_timeFrame,
     is_invasive,
+    date
   } = test;
 
   // ! handle Update
@@ -39,6 +40,7 @@ const TestRow = ({ test, index, refetch }) => {
       purpose,
       results_timeFrame,
       is_invasive,
+      date
     } = data;
 
     const newTest = {
@@ -50,6 +52,7 @@ const TestRow = ({ test, index, refetch }) => {
       purpose,
       results_timeFrame,
       is_invasive,
+      date
     };
 
     // update
@@ -63,7 +66,8 @@ const TestRow = ({ test, index, refetch }) => {
             icon: "success",
           });
           modalRef.current.close();
-          refetch()
+          refetch();
+          reset();
         } else {
           Swal.fire({
             icon: "error",
@@ -97,7 +101,7 @@ const TestRow = ({ test, index, refetch }) => {
                 text: "Your food has been Deleted.",
                 icon: "success",
               });
-              refetch()
+              refetch();
             }
           })
           .catch((err) => console.log(err));
@@ -162,9 +166,7 @@ const TestRow = ({ test, index, refetch }) => {
               </div>
 
               <div className="w-full mb-3">
-                <label className="text-xs font-semibold px-1">
-                  Category
-                </label>
+                <label className="text-xs font-semibold px-1">Category</label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -192,16 +194,14 @@ const TestRow = ({ test, index, refetch }) => {
                 </div>
               </div>
               <div className="md:w-1/2 mb-3 ">
-                <label className="text-xs font-semibold px-1">
-                  Description
-                </label>
+                <label className="text-xs font-semibold px-1">Date</label>
                 <div className="flex flex-col">
                   <input
-                    type="text"
-                    defaultValue={description}
+                    type="date"
+                    defaultValue={date}
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="Photo URL"
-                    {...register("description")}
+                    {...register("date")}
                   />
                 </div>
               </div>
@@ -210,7 +210,9 @@ const TestRow = ({ test, index, refetch }) => {
             {/* row 3 */}
             <div className="md:flex gap-4">
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">Sample Type</label>
+                <label className="text-xs font-semibold px-1">
+                  Sample Type
+                </label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -239,7 +241,9 @@ const TestRow = ({ test, index, refetch }) => {
             {/* row 4 */}
             <div className="md:flex gap-4">
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">Results Time Frame</label>
+                <label className="text-xs font-semibold px-1">
+                  Results Time Frame
+                </label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -252,7 +256,9 @@ const TestRow = ({ test, index, refetch }) => {
               </div>
 
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">Is Invasive</label>
+                <label className="text-xs font-semibold px-1">
+                  Is Invasive
+                </label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -260,6 +266,23 @@ const TestRow = ({ test, index, refetch }) => {
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="Photo URL"
                     {...register("is_invasive")}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* row 5 */}
+            <div className="mb-5">
+              <div className=" ">
+                <label className="text-xs font-semibold px-1">
+                  Description
+                </label>
+                <div className="flex flex-col">
+                  <input
+                    type="text"
+                    defaultValue={description}
+                    className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                    placeholder="Photo URL"
+                    {...register("description")}
                   />
                 </div>
               </div>

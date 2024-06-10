@@ -15,7 +15,6 @@ const AllTestCard = ({ test }) => {
     sample_type,
     _id,
   } = test;
-  console.log(test);
   return (
     <div className="bg-[#2EE2B5] rounded-[7px] shadow-xl transition-all duration-400">
       <div className="card bg-base-100 h-full rounded-[7px] hover:bg-[#0F2976] hover:text-white rounded-br-[100px] group transition-all duration-400">

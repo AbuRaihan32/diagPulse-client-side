@@ -1,31 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import SectionHeder from "../../Components/SectionHeder";
 import AllTestCard from "./AllTestCard";
 import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { PuffLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
+import useTests from "../../Hooks/useTests";
 
 const AllTestsFoUser = () => {
-  const axiosSecure = useAxiosSecure();
+  const {allTests, isPending} = useTests();
   const [filteredTests, setFilteredTests] = useState([]);
 
-  const {
-    data: allTests = [],
-    isPending,
-  } = useQuery({
-    queryKey: ["allTests"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/tests");
-      const today = new Date();
-      const filteredTests = res.data?.filter(
-        (test) => new Date(test.date) >= today
-      );
-
-      return filteredTests;
-    },
-  });
 
   useEffect(() => {
     setFilteredTests(allTests);
@@ -67,6 +52,9 @@ const AllTestsFoUser = () => {
 
   return (
     <div className="mt-20">
+      <Helmet>
+        <title>DiagPulse || All Tests</title>
+      </Helmet>
       <div className="w-[85%] md:w-[60%] mx-auto">
         <SectionHeder
           header={"our amazing featured test"}

@@ -9,35 +9,39 @@ const AddTest = () => {
 
   const onSubmit = (data) => {
     const {
-      title,
+      name,
+      date,
+      description,
+      category,
       image,
-      bgImage,
-      text,
-      couponCode,
-      discountRate,
-      expireDate,
-      status,
+      sample_type,
+      purpose,
+      results_timeFrame,
+      is_invasive,
     } = data;
-
-    const newBanner = {
-      title,
+ 
+    const newTest = {
+      name,
+      date,
+      description,
+      category,
       image,
-      bgImage,
-      text,
-      couponCode,
-      discountRate,
-      expireDate,
-      status,
+      sample_type,
+      purpose,
+      results_timeFrame,
+      is_invasive,
     };
 
-    // Add Banner
+    console.log(newTest)
+
+    // Add Test
     axiosSecure
-      .put(`/`, newBanner)
+      .post(`/`, newTest)
       .then((data) => {
         if (data.data.modifiedCount) {
           Swal.fire({
             title: "Added",
-            text: "Your Banner has been updated.",
+            text: "Your Test has been updated.",
             icon: "success",
           });
         } else {
@@ -62,27 +66,27 @@ const AddTest = () => {
           {/* row 1 */}
           <div className="md:flex gap-4 ">
             <div className="w-full mb-3">
-              <label className="text-xs font-semibold px-1">Banner Title</label>
+              <label className="text-xs font-semibold px-1">Test Name</label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  placeholder="Banner Title"
-                  {...register("title")}
+                  placeholder="Test Name"
+                  {...register("name")}
                 />
               </div>
             </div>
 
             <div className="w-full mb-3">
               <label className="text-xs font-semibold px-1">
-                Banner Description
+                Test Category
               </label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Description"
-                  {...register("text")}
+                  {...register("category")}
                 />
               </div>
             </div>
@@ -102,15 +106,13 @@ const AddTest = () => {
               </div>
             </div>
             <div className="md:w-1/2 mb-3 ">
-              <label className="text-xs font-semibold px-1">
-                Background Image URL
-              </label>
+              <label className="text-xs font-semibold px-1">Date</label>
               <div className="flex flex-col">
                 <input
-                  type="text"
+                  type="date"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Photo URL"
-                  {...register("bgImage")}
+                  {...register("date")}
                 />
               </div>
             </div>
@@ -119,27 +121,25 @@ const AddTest = () => {
           {/* row 3 */}
           <div className="md:flex gap-4">
             <div className="md:w-1/2 mb-3">
-              <label className="text-xs font-semibold px-1">Coupon Code</label>
+              <label className="text-xs font-semibold px-1">Sample Type</label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  placeholder="Coupon Code"
-                  {...register("couponCode")}
+                  placeholder="sample_type"
+                  {...register("sample_type")}
                 />
               </div>
             </div>
 
             <div className="md:w-1/2 mb-3">
-              <label className="text-xs font-semibold px-1">
-                Discount Rate
-              </label>
+              <label className="text-xs font-semibold px-1">Purpose</label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  placeholder="discount rate"
-                  {...register("discountRate")}
+                  placeholder="purpose"
+                  {...register("purpose")}
                 />
               </div>
             </div>
@@ -148,36 +148,53 @@ const AddTest = () => {
           {/* row 4 */}
           <div className="md:flex gap-4">
             <div className="md:w-1/2 mb-3">
-              <label className="text-xs font-semibold px-1">Expire Date</label>
+              <label className="text-xs font-semibold px-1">Results TimeFrame</label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  placeholder="expire date"
-                  {...register("expireDate")}
+                  placeholder="results_timeFrame"
+                  {...register("results_timeFrame")}
                 />
               </div>
             </div>
 
             <div className="md:w-1/2 mb-3">
-              <label className="text-xs font-semibold px-1">Status</label>
+              <label className="text-xs font-semibold px-1">Is Invasive</label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  placeholder="Active/UnActive"
-                  {...register("status")}
+                  placeholder="yes/no"
+                  {...register("is_invasive")}
                 />
               </div>
             </div>
           </div>
-          <div className="flex justify-center mt-6">
+
+          {/* row 5 */}
+          <div className="md:flex gap-4">
+            <div className="w-full mb-3">
+              <label className="text-xs font-semibold px-1">
+                Test Description
+              </label>
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  placeholder="Description"
+                  {...register("description")}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center mt-3">
             <button className=" w-[70%] text-xl text-white relative px-5 py-2 font-semibold group">
               <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-[18deg] bg-gradient-to-r from-[#24BAD2] to-[#31EDAF] group-hover:bg-[#32CC32] group-hover:skew-x-[18deg]"></span>
               <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-[18deg] bg-gradient-to-r from-[#24BAD2] to-[#31EDAF] group-hover:bg-gradient-to-r hover:from-[#31EDAF] hover:to-[#24BAD2] group-hover:-skew-x-[18deg]"></span>
 
               <span className="flex items-center justify-center gap-2 relative">
-                <span className="">Add Banner</span>{" "}
+                <span className="">Add Test</span>{" "}
               </span>
             </button>
           </div>
