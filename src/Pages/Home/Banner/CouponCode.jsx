@@ -21,17 +21,17 @@ const CouponCode = ({code}) => {
 
   return (
     <div>
-      <div className="flex items-center space-x-2 mb-6">
+      <div className="flex items-center space-x-2">
         <span
           id="cpnCode"
-          className="border-dashed border text-white px-4 py-2 rounded-l"
+          className="border-dashed border border-[#3ed1a5] text-[#0F2976] px-4 py-2 rounded-l"
         >
           {code}
         </span>
         <span
           id="cpnBtn"
           onClick={copyToClipboard}
-          className="border border-white bg-white text-purple-600 px-4 py-2 rounded-r cursor-pointer"
+          className="border border-white bg-white px-4 py-2 rounded-r cursor-pointer"
         >
           Copy Code
         </span>

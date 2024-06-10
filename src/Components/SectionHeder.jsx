@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 const SectionHeder = ({header, description}) => {
     return (
         <div className="w-full my-8">
-            <h1 className="text-3xl text-[#1E2865] text-center uppercase">{header}</h1>
-            <p className="text-gray-500 text-center">{description}</p>
+            <h1 className="text-4xl text-center font-medium mb-2">{header}</h1>
+            <p className="text-center">{description}</p>
         </div>
     );
 };

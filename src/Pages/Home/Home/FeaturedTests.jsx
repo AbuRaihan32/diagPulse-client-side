@@ -35,7 +35,7 @@ const FeaturedTests = () => {
     <div className="mt-20">
       <div className="w-[60%] mx-auto">
         <SectionHeder
-          header={"our amazing featured test"}
+          header={"Our Amazing Featured Test"}
           description={
             "We have world class pathologists & Lab assistants. We are equipped with best laboratory machinery & reagents. We ensure best quality findings."
           }

@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { PuffLoader } from "react-spinners";
 import { AiOutlineCaretRight } from "react-icons/ai";
+import SectionHeder from "../../../Components/SectionHeder";
 
 const Recommendation = () => {
   const sliderRef = useRef(null);
@@ -73,22 +74,20 @@ const Recommendation = () => {
     <section className="mt-10 md:max-w-[90%] mx-auto -mb-7">
       <div className="px-4 py-8 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">
-            Personalized Recommendation
-          </h2>
-          <p>
-            Get started with personalized recommendations tailored to your
-            needs. Experience tailored expertise based on your preferences
-          </p>
+          <SectionHeder
+            header={"Personalized Recommendation"}
+            description="Get started with personalized recommendations tailored to your
+            needs. Experience tailored expertise based on your preferences"
+          ></SectionHeder>
         </div>
 
-        <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row gap-5">
-          <div className="lg:w-[40%] hidden lg:flex items-center justify-center bg-slate-200 p-4">
+        <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row gap-5 text-gray-800">
+          <div className="lg:w-[40%] hidden lg:flex items-center justify-center bg-gray-50 rounded-[7px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] p-4">
             <div className=" text-center">
               <h2 className="text-xl font-bold">
                 Tailored Solutions for Your Unique Needs!
               </h2>
-              <p className="mt-4 text-gray-700">
+              <p className="mt-4">
                 Discover tailored solutions for your practice with our
                 personalized recommendations, designed to optimize efficiency
                 and elevate patient care.
@@ -117,14 +116,14 @@ const Recommendation = () => {
           <div ref={sliderRef} className="keen-slider">
             {recommendations.map((item) => (
               <div key={item.title} className="keen-slider__slide">
-                <blockquote className="flex h-full flex-col justify-between bg-white p-4 shadow-sm sm:p-6 lg:p-10">
+                <blockquote className="flex h-full flex-col justify-between p-4 sm:p-6 lg:p-10 bg-[#ECFFFB] rounded-[7px]">
                   <div>
                     <div className="">
                       <p className="text-2xl font-bold text-[#112B7A] sm:text-3xl">
                         {item.title}
                       </p>
 
-                      <p className="mt-2 leading-relaxed text-gray-500">
+                      <p className="mt-2 leading-relaxed">
                         {item.content.slice(0, 200)}
                       </p>
                       <p className="text-[#112B7A] font-medium mt-2">
@@ -147,7 +146,7 @@ const Recommendation = () => {
                     </div>
                   </div>
 
-                  <footer className="mt-2 text-sm text-gray-500">
+                  <footer className="mt-2 text-sm ">
                     &mdash; {item.suggestor_name}
                   </footer>
                 </blockquote>

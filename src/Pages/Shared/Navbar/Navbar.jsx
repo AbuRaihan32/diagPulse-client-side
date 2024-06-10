@@ -148,6 +148,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        {/* theme control */}
         <div className="mr-3">
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}

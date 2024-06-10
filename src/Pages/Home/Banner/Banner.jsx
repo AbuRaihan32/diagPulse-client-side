@@ -36,7 +36,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className="-z-10">
+      <div className="-z-10 rounded-lg">
         <Swiper
           rewind={true}
           navigation={true}

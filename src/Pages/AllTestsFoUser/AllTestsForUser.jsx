@@ -57,7 +57,7 @@ const AllTestsFoUser = () => {
       </Helmet>
       <div className="w-[85%] md:w-[60%] mx-auto">
         <SectionHeder
-          header={"our amazing featured test"}
+          header={"All Amazing Test"}
           description={
             "We have world class pathologists & Lab assistants. We are equipped with best laboratory machinery & reagents. We ensure best quality findings."
           }

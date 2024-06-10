@@ -16,8 +16,8 @@ const AllTestCard = ({ test }) => {
     _id,
   } = test;
   return (
-    <div className="bg-[#2EE2B5] rounded-[7px] shadow-xl transition-all duration-400">
-      <div className="card bg-base-100 h-full rounded-[7px] hover:bg-[#0F2976] hover:text-white rounded-br-[100px] group transition-all duration-400">
+    <div className="bg-[#2EE2B5] rounded-[7px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] transition-all duration-400 text-gray-800">
+      <div className="card h-full rounded-[7px] bg-gray-50 hover:bg-[#0F2976] hover:text-white rounded-br-[100px] group transition-all duration-400">
         <div className="card-body">
           <div className="mask mask-hexagon w-36 h-36 flex justify-center items-center bg-gradient-to-r from-[#25BCCF] to-[#2EE9B1] mx-auto ">
             <img className="mask mask-hexagon w-32 h-32 " src={image} />
