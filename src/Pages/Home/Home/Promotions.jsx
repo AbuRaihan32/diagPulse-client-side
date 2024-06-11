@@ -35,8 +35,8 @@ const Promotions = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-        {promotions.map((pro) => (
-          <ProCard key={pro._id} pro={pro}></ProCard>
+        {promotions.map((pro, index) => (
+          <ProCard key={pro._id} pro={pro} index={index}></ProCard>
         ))}
       </div>
     </section>

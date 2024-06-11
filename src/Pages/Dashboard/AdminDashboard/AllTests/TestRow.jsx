@@ -19,8 +19,8 @@ const TestRow = ({ test, index, refetch }) => {
     image,
     sample_type,
     purpose,
-    results_timeFrame,
-    is_invasive,
+    price,
+    slot,
     date
   } = test;
 
@@ -38,8 +38,8 @@ const TestRow = ({ test, index, refetch }) => {
       image,
       sample_type,
       purpose,
-      results_timeFrame,
-      is_invasive,
+      price,
+      slot,
       date
     } = data;
 
@@ -50,8 +50,8 @@ const TestRow = ({ test, index, refetch }) => {
       image,
       sample_type,
       purpose,
-      results_timeFrame,
-      is_invasive,
+      price,
+      slot,
       date
     };
 
@@ -62,7 +62,7 @@ const TestRow = ({ test, index, refetch }) => {
         if (data.data.modifiedCount) {
           Swal.fire({
             title: "Updated",
-            text: "Your food has been updated.",
+            text: "Your Test has been updated.",
             icon: "success",
           });
           modalRef.current.close();
@@ -98,7 +98,7 @@ const TestRow = ({ test, index, refetch }) => {
             if (data.data.deletedCount === 1) {
               Swal.fire({
                 title: "Delete",
-                text: "Your food has been Deleted.",
+                text: "Your test has been Deleted.",
                 icon: "success",
               });
               refetch();
@@ -242,30 +242,30 @@ const TestRow = ({ test, index, refetch }) => {
             <div className="md:flex gap-4">
               <div className="md:w-1/2 mb-3">
                 <label className="text-xs font-semibold px-1">
-                  Results Time Frame
+                  Price
                 </label>
                 <div className="flex flex-col">
                   <input
                     type="text"
-                    defaultValue={results_timeFrame}
+                    defaultValue={price}
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                    placeholder="Photo URL"
-                    {...register("results_timeFrame")}
+                    placeholder="Price"
+                    {...register("price")}
                   />
                 </div>
               </div>
 
               <div className="md:w-1/2 mb-3">
                 <label className="text-xs font-semibold px-1">
-                  Is Invasive
+                  Slot
                 </label>
                 <div className="flex flex-col">
                   <input
                     type="text"
-                    defaultValue={is_invasive}
+                    defaultValue={slot}
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                    placeholder="Photo URL"
-                    {...register("is_invasive")}
+                    placeholder="Slot"
+                    {...register("slot")}
                   />
                 </div>
               </div>

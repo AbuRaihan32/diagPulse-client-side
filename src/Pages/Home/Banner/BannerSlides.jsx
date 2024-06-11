@@ -30,16 +30,24 @@ const BannerSlides = ({ banner }) => {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4 text-center">
-              <Link to={"/login"}>
-                <button className="py-3 px-10 btn hover:bg-gradient-to-r hover:from-[#0F2976] hover:to-[#2344a0] rounded-full bg-gradient-to-r from-[#25BCCF] to-[#2EE9B1] text-white ">
-                  Get Started
-                </button>
+              <Link
+                to={"/login"}
+                className="relative border inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full bg-[#0F2976] group mr-2 text-white"
+              >
+                <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
+                  <span className="">Get Started</span>
+                </span>
               </Link>
 
-              <Link to={"/allTestForUser"}>
-                <button className="py-3 px-10 btn bg-gradient-to-r from-[#0F2976] to-[#2344a0] rounded-full hover:bg-gradient-to-r hover:from-[#25BCCF] hover:to-[#2EE9B1] text-white ">
-                  See All Tests
-                </button>
+              <Link
+                to={"/allTestForUser"}
+                className="relative border border-[#2EE9B1] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group mr-2"
+              >
+                <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
+                  <span className="">See All Tests</span>
+                </span>
               </Link>
             </div>
           </div>

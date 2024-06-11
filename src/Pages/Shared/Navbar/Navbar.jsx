@@ -15,7 +15,7 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
+              ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
               : "py-[6px] px-3"
           }
           to={"/"}
@@ -28,7 +28,7 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
+              ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
               : "py-[6px] px-3"
           }
           to={"/allTestForUser"}
@@ -45,7 +45,7 @@ const Navbar = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
+                      ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
                       : "py-[6px] px-3"
                   }
                   to={"/dashboard/allUsers"}
@@ -60,7 +60,7 @@ const Navbar = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "border border-[#32CD32] hover:bg-[#008000] hover:text-white rounded-md py-[7px] px-3"
+                      ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
                       : "py-[6px] px-3"
                   }
                   to={"/dashboard/myProfile"}
@@ -183,7 +183,7 @@ const Navbar = () => {
               <div className="avatar mr-5 z-20 flex md:gap-4">
                 <div
                   title={`${user.displayName}`}
-                  className="w-10 rounded-full ring ring-[#32CD32] ring-offset-base-100 ring-offset-2"
+                  className="w-10 rounded-full ring ring-[#2EE9B1] ring-offset-base-100 ring-offset-2"
                 >
                   <img
                     src={
@@ -193,50 +193,49 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="absolute -top-[15px] right-[5px] z-10">
-                <PuffLoader color="lime" size={70}></PuffLoader>
+                <PuffLoader color="#2EE9B1" size={70}></PuffLoader>
               </div>
             </div>
 
-            <button
-              onClick={signOutBtnHandler}
-              className="relative px-5 py-2 w-[140px] font-medium group hidden md:inline"
-            >
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-[18deg] border border-[#32CD32] group-hover:border-[#32CD32] group-hover:skew-x-[18deg]"></span>
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-[18deg] border border-[#32CD32] group-hover:border-[#32CD32] group-hover:-skew-x-[18deg]"></span>
-
-              <span className="flex items-center gap-2 relative">
-                <BiLogOutCircle className="text-xl"></BiLogOutCircle> Sign Out
-              </span>
-            </button>
-          </>
-        ) : (
-          <>
             <Link
               to={"/login"}
-              className="relative px-5 py-2 font-medium group mr-5"
+              onClick={signOutBtnHandler}
+              className="relative border border-[#2EE9B1] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group "
             >
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-[18deg] border border-[#32CD32] group-hover:border-[#32CD32] group-hover:skew-x-[18deg]"></span>
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-[18deg] border border-[#32CD32] group-hover:border-[#32CD32] group-hover:-skew-x-[18deg]"></span>
-
-              <span className="flex items-center gap-2 relative">
+              <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+              <span className="flex items-center justify-center gap-2 relative text-center w-full text-[#2EE9B1] transition-colors duration-300 ease-in-out group-hover:text-white">
+                {" "}
+                <BiLogOutCircle className="text-xl"></BiLogOutCircle>{" "}
+                <span className="hidden md:inline">Sign Out</span>
+              </span>
+            </Link>
+          </>
+        ) : (
+          <div>
+            <Link
+              to={"/login"}
+              className="relative border border-[#2EE9B1] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group mr-2"
+            >
+              <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+              <span className="flex items-center justify-center gap-2 relative text-center w-full text-[#2EE9B1] transition-colors duration-300 ease-in-out group-hover:text-white">
+                {" "}
                 <BiLogInCircle className="text-xl"></BiLogInCircle>{" "}
-                <span className="hidden md:inline">Sign In</span>{" "}
+                <span className="hidden md:inline">Sign In</span>
               </span>
             </Link>
 
             <Link
               to={"/register"}
-              className="relative px-5 py-2 font-medium group mr-5 hidden md:inline"
+              className="relative border border-[#2EE9B1] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group"
             >
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-[18deg] border border-[#32CD32] group-hover:border-[#32CD32] group-hover:skew-x-[18deg]"></span>
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-[18deg] border border-[#32CD32] group-hover:border-[#32CD32] group-hover:-skew-x-[18deg]"></span>
-
-              <span className="flex items-center gap-2 relative">
+              <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+              <span className="flex items-center justify-center gap-2 relative text-center w-full text-[#2EE9B1] transition-colors duration-300 ease-in-out group-hover:text-white">
+                {" "}
                 <BiLogInCircle className="text-xl"></BiLogInCircle>{" "}
-                <span className="hidden md:inline">Register</span>{" "}
+                <span className="hidden md:inline">Sign Up</span>
               </span>
             </Link>
-          </>
+          </div>
         )}
       </div>
     </div>

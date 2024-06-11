@@ -47,9 +47,9 @@ const AllTests = () => {
               <tr>
                 <th>No.</th>
                 <th>Image & Name</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Role</th>
+                <th>Category</th>
+                <th>Sample Type</th>
+                <th>Purpose</th>
                 <th>Update</th>
                 <th>Delete </th>
               </tr>

@@ -19,8 +19,6 @@ const useTests = () => {
       return filteredTests;
     },
   });
-
-  console.log(allTests);
   return { allTests, isPending, isError };
 };
 

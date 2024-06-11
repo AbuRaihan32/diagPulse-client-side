@@ -5,16 +5,7 @@ import { FaCircleChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const AllTestCard = ({ test }) => {
-  const {
-    category,
-    date,
-    image,
-    name,
-    purpose,
-    results_timeFrame,
-    sample_type,
-    _id,
-  } = test;
+  const { slot, date, image, name, purpose, price, _id } = test;
   return (
     <div className="bg-[#2EE2B5] rounded-[7px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] transition-all duration-400 text-gray-800">
       <div className="card h-full rounded-[7px] bg-gray-50 hover:bg-[#0F2976] hover:text-white rounded-br-[100px] group transition-all duration-400">
@@ -32,28 +23,21 @@ const AllTestCard = ({ test }) => {
                 {" "}
                 <span className="flex items-center gap-2">
                   <FaCircleChevronRight className="text-[#25BCCF] group-hover:text-[#2EE9B1]"></FaCircleChevronRight>
+                  Price : {price} $
+                </span>
+              </li>
+              <li className="list-none">
+                {" "}
+                <span className="flex items-center gap-2">
+                  <FaCircleChevronRight className="text-[#25BCCF] group-hover:text-[#2EE9B1]"></FaCircleChevronRight>
+                  Slot : {slot}
+                </span>
+              </li>
+              <li className="list-none">
+                {" "}
+                <span className="flex items-center gap-2">
+                  <FaCircleChevronRight className="text-[#25BCCF] group-hover:text-[#2EE9B1]"></FaCircleChevronRight>
                   Date : {date}
-                </span>
-              </li>
-              <li className="list-none">
-                {" "}
-                <span className="flex items-center gap-2">
-                  <FaCircleChevronRight className="text-[#25BCCF] group-hover:text-[#2EE9B1]"></FaCircleChevronRight>
-                  Category : {category.split(" ")[0]} ..
-                </span>
-              </li>
-              <li className="list-none">
-                {" "}
-                <span className="flex items-center gap-2">
-                  <FaCircleChevronRight className="text-[#25BCCF] group-hover:text-[#2EE9B1]"></FaCircleChevronRight>
-                  Sample : {sample_type.split(" ")[0]} ..
-                </span>
-              </li>
-              <li className="list-none">
-                {" "}
-                <span className="flex items-center gap-2">
-                  <FaCircleChevronRight className="text-[#25BCCF] group-hover:text-[#2EE9B1]"></FaCircleChevronRight>
-                  Time : {results_timeFrame.split(" ")[0]} ..
                 </span>
               </li>
             </ul>

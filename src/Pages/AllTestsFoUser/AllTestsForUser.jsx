@@ -6,10 +6,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import { PuffLoader } from "react-spinners";
 import { Helmet } from "react-helmet-async";
 import useTests from "../../Hooks/useTests";
+import { useNavigation } from "react-router-dom";
 
 const AllTestsFoUser = () => {
   const {allTests, isPending} = useTests();
   const [filteredTests, setFilteredTests] = useState([]);
+  const navigation = useNavigation();
 
 
   useEffect(() => {
@@ -43,6 +45,13 @@ const AllTestsFoUser = () => {
   };
 
   if (isPending) {
+    return (
+      <div className="w-full h-[200px] flex items-center justify-center">
+        <PuffLoader color="#25BCCF"></PuffLoader>
+      </div>
+    );
+  }
+  if (navigation.state === 'loading') {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
         <PuffLoader color="#25BCCF"></PuffLoader>
@@ -99,7 +108,6 @@ const AllTestsFoUser = () => {
         </div>
       </div>
 
-      {/* search options */}
       {allTests?.length < 1 ? (
         <div className="w-full h-[500px] flex items-center justify-center font-semibold text-4xl text-center">
           <div>No test available.</div>

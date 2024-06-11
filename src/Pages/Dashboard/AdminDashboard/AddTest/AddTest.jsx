@@ -5,7 +5,11 @@ import SectionHeder from "../../../../Components/SectionHeder";
 
 const AddTest = () => {
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
     const {
@@ -16,10 +20,10 @@ const AddTest = () => {
       image,
       sample_type,
       purpose,
-      results_timeFrame,
-      is_invasive,
+      price,
+      slot,
     } = data;
- 
+
     const newTest = {
       name,
       date,
@@ -28,17 +32,15 @@ const AddTest = () => {
       image,
       sample_type,
       purpose,
-      results_timeFrame,
-      is_invasive,
+      price,
+      slot,
     };
-
-    console.log(newTest)
 
     // Add Test
     axiosSecure
-      .post(`/`, newTest)
+      .post(`/addTest`, newTest)
       .then((data) => {
-        if (data.data.modifiedCount) {
+        if (data.data.insertedId) {
           Swal.fire({
             title: "Added",
             text: "Your Test has been updated.",
@@ -72,8 +74,13 @@ const AddTest = () => {
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Test Name"
-                  {...register("name")}
+                  {...register("name", { required: true })}
                 />
+                {errors.name && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
 
@@ -86,8 +93,13 @@ const AddTest = () => {
                   type="text"
                   className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Description"
-                  {...register("category")}
+                  {...register("category", { required: true })}
                 />
+                {errors.category && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -101,8 +113,13 @@ const AddTest = () => {
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Photo URL"
-                  {...register("image")}
+                  {...register("image", { required: true })}
                 />
+                {errors.image && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
             <div className="md:w-1/2 mb-3 ">
@@ -112,8 +129,13 @@ const AddTest = () => {
                   type="date"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Photo URL"
-                  {...register("date")}
+                  {...register("date", { required: true })}
                 />
+                {errors.date && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -127,8 +149,13 @@ const AddTest = () => {
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="sample_type"
-                  {...register("sample_type")}
+                  {...register("sample_type", { required: true })}
                 />
+                {errors.sample_type && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
 
@@ -148,26 +175,36 @@ const AddTest = () => {
           {/* row 4 */}
           <div className="md:flex gap-4">
             <div className="md:w-1/2 mb-3">
-              <label className="text-xs font-semibold px-1">Results TimeFrame</label>
+              <label className="text-xs font-semibold px-1">Price</label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  placeholder="results_timeFrame"
-                  {...register("results_timeFrame")}
+                  placeholder="Price"
+                  {...register("price", { required: true })}
                 />
+                {errors.price && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
 
             <div className="md:w-1/2 mb-3">
-              <label className="text-xs font-semibold px-1">Is Invasive</label>
+              <label className="text-xs font-semibold px-1">Slot</label>
               <div className="flex flex-col">
                 <input
                   type="text"
                   className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  placeholder="yes/no"
-                  {...register("is_invasive")}
+                  placeholder="Slot"
+                  {...register("slot", { required: true })}
                 />
+                {errors.slot && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -183,8 +220,13 @@ const AddTest = () => {
                   type="text"
                   className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Description"
-                  {...register("description")}
+                  {...register("description", { required: true })}
                 />
+                {errors.description && (
+                  <span className="text-red-500 font-bold pl-3">
+                    This field is required
+                  </span>
+                )}
               </div>
             </div>
           </div>
