@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const BannerSlides = ({ banner }) => {
-  console.log(banner.bgImage);
   const bgImageStyle = {
     backgroundImage: `url(${banner.bgImage})`,
     backgroundSize: "cover",

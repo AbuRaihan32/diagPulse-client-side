@@ -5,7 +5,20 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
-const CheckoutForm = ({ price, modalRef }) => {
+const CheckoutForm = ({ test, modalRef, refetch }) => {
+  const {
+    name,
+    date,
+    description,
+    category,
+    image,
+    sample_type,
+    purpose,
+    price,
+    _id,
+    slot,
+    bookedCount
+  } = test;
   const stripe = useStripe();
   const { user } = useAuth();
   const elements = useElements();
@@ -15,7 +28,6 @@ const CheckoutForm = ({ price, modalRef }) => {
 
   useEffect(() => {
     axiosSecure.post("create-payment-intent", { price }).then((res) => {
-      console.log(res.data.clientSecret);
       setClientSecret(res.data.clientSecret);
     });
   }, [axiosSecure, price]);
@@ -45,40 +57,66 @@ const CheckoutForm = ({ price, modalRef }) => {
 
     // confirm payment
 
-    const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: card,
-        billing_details: {
-          email: user?.email || 'anonymous',
-          name: user?.displayName || 'anonymous',
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || "anonymous",
+            name: user?.displayName || "anonymous",
+          },
         },
-      },
-    });
+      });
 
+    if (confirmError) {
+      console.log("error", confirmError);
+    } else {
+      console.log("payment intent", paymentIntent);
+      if (paymentIntent.status === "succeeded") {
+        Swal.fire({
+          title: "Payment Successful",
+          text: `Your TransitionId: ${paymentIntent.id}`,
+          icon: "success",
+        });
+        modalRef.current.close();
 
-    if(confirmError){
-        console.log('error', confirmError)
-    }else{
-        console.log('payment intent', paymentIntent)
-        if(paymentIntent.status === "succeeded"){
-            Swal.fire({
-                title: "Payment Successful",
-                text: `Your TransitionId: ${paymentIntent.id}`,
-                icon: "success",
-              });
-              modalRef.current.close();
-        }
+        // update slot
+        const slotNum = parseInt(slot);
+        const UpdatedCount = slotNum - 1;
+
+        const bookedCountNum = parseInt(bookedCount);
+        const UpdatedBookedCount = bookedCountNum ? bookedCountNum + 1 : 1;
+        console.log(UpdatedBookedCount)
+        const newSlot = {
+          slot: UpdatedCount,
+          name,
+          date,
+          description,
+          category,
+          image,
+          sample_type,
+          purpose,
+          price,
+          bookedCount: UpdatedBookedCount ,
+          reportStatus: 'Pending',
+        };
+
+        axiosSecure.patch(`/tests/${_id}`, newSlot).then((res) => {
+          console.log(res.data);
+          refetch();
+        });
+      }
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <CardElement
+        className="border p-4 rounded-lg border-[#2EE2B5]"
         options={{
           style: {
             base: {
               fontSize: "16px",
-              border: "1px",
               color: "#424770",
               "::placeholder": {
                 color: "#aab7c4",
@@ -90,20 +128,21 @@ const CheckoutForm = ({ price, modalRef }) => {
           },
         }}
       />
+      <p className="text-red-600">{error}</p>
       <button
-        className="bg-[#2EE2B5] px-4 py-1 rounded-lg text-white mt-4"
+        className="bg-[#2EE2B5] px-5 py-2 rounded-lg text-white mt-6"
         type="submit"
         disabled={!stripe || !clientSecret}
       >
         Pay
       </button>
-      <p className="text-red-600">{error}</p>
     </form>
   );
 };
 
 CheckoutForm.propTypes = {
-  price: PropTypes.node,
+  test: PropTypes.node,
   modalRef: PropTypes.node,
+  refetch: PropTypes.node,
 };
 export default CheckoutForm;

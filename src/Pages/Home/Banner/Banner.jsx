@@ -44,9 +44,9 @@ const Banner = () => {
           className="mySwiper"
         >
           {/* bannerData Map */}
-          {bannerData?.map((bn) => (
+          {bannerData?.map((bn, index) => (
             <>
-              <SwiperSlide key={bn.id}>
+              <SwiperSlide key={index}>
                 <BannerSlides banner={bn}></BannerSlides>
               </SwiperSlide>
             </>

@@ -6,17 +6,18 @@ import PropTypes from 'prop-types';
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_PK);
 
-const Payment = ({price, modalRef}) => {
+const Payment = ({test, modalRef, refetch}) => {
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm price={price} modalRef={modalRef}></CheckoutForm>
+      <CheckoutForm test={test} modalRef={modalRef} refetch={refetch}></CheckoutForm>
     </Elements>
   );
 };
 
 
 Payment.propTypes = {
-    price: PropTypes.node,
-    modalRef: PropTypes.node
+    test: PropTypes.node,
+    modalRef: PropTypes.node,
+    refetch: PropTypes.node
 }
 export default Payment;

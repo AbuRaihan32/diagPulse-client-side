@@ -12,7 +12,7 @@ const Details = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const modalRef = useRef(null);
-  const { data: test = [], isPending } = useQuery({
+  const { data: test = [], isPending, refetch } = useQuery({
     queryKey: ["test"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/test/${id}`);
@@ -144,13 +144,13 @@ const Details = () => {
 
       <dialog id="my_modal_4" className="modal" ref={modalRef}>
         <div className="modal-box w-11/12 md:max-w-[60%]">
-          <div className="my-4">Amount : {price}</div>
-          <Payment price={price} modalRef={modalRef}></Payment>
+          <div className="my-4">Amount : {price} $</div>
+          <Payment test={test} modalRef={modalRef} refetch={refetch}></Payment>
           <div className=" flex justify-end">
-            <div className="w-fit">
+            <div className="w-fit -mt-10">
               <form method="dialog" className="flex justify-center">
                 {/* if there is a button, it will close the modal */}
-                <button className=" px-5 py-2 font-semibold bg-[#2EE2B5] rounded-md text-white">
+                <button className=" px-4 py-2 font-semibold bg-[#2EE2B5] rounded-md text-white">
                   close
                 </button>
               </form>
