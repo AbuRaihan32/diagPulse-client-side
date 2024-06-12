@@ -23,13 +23,8 @@ const FeaturedTests = () => {
       </div>
     );
   }
-  // if (allTests === '') {
-  //   return (
-  //     <div className="w-full h-[200px] flex items-center justify-center">
-  //       <PuffLoader color="#32cd32"></PuffLoader>
-  //     </div>
-  //   );
-  // }
+
+  const sortedTests = allTests.sort((a, b)=> b.bookedCount - a.bookedCount);
 
   return (
     <div className="mt-20">
@@ -43,7 +38,7 @@ const FeaturedTests = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-[85%] mx-auto">
-        {allTests?.slice(0, 8).map((test) => (
+        {sortedTests?.slice(0, 8).map((test) => (
           <AllTestCard key={test._id} test={test}></AllTestCard>
         ))}
       </div>

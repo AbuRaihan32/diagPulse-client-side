@@ -12,7 +12,11 @@ const Details = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const modalRef = useRef(null);
-  const { data: test = [], isPending, refetch } = useQuery({
+  const {
+    data: test = [],
+    isPending,
+    refetch,
+  } = useQuery({
     queryKey: ["test"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/test/${id}`);
@@ -54,8 +58,8 @@ const Details = () => {
 
   return (
     <>
-      <div className="bg-[#2EE2B5] rounded-[7px] shadow-xl transition-all duration-400 w-[80%] mx-auto">
-        <div className="card bg-base-100 h-full rounded-[7px] hover:bg-[#0F2976] hover:text-white rounded-br-[100px] group transition-all duration-400">
+      <div className="bg-[#2EE2B5] rounded-[9px] shadow-xl transition-all duration-400 w-[80%] mx-auto">
+        <div className="card h-full rounded-[7px] bg-gray-50 hover:bg-[#0F2976] hover:text-white rounded-br-[100px] group transition-all duration-400">
           <div className="card-body">
             <div className="flex flex-col lg:flex-row gap-4">
               <div className="flex items-center justify-center">
@@ -142,9 +146,9 @@ const Details = () => {
         </div>
       </div>
 
+      {/* modal end */}
       <dialog id="my_modal_4" className="modal" ref={modalRef}>
         <div className="modal-box w-11/12 md:max-w-[60%]">
-          <div className="my-4">Amount : {price} $</div>
           <Payment test={test} modalRef={modalRef} refetch={refetch}></Payment>
           <div className=" flex justify-end">
             <div className="w-fit -mt-10">

@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 const UsersRow = ({ user, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
-  const modalRef = useRef(null);
+  const modalRef1 = useRef(null);
 
   const isAdmin = user.role === "Admin";
   const isActive = user.status === "Active";
@@ -25,7 +25,7 @@ const UsersRow = ({ user, index, refetch }) => {
 
   // ! handle Update
   const handleUpdate = () => {
-    modalRef.current.showModal();
+    modalRef1.current.showModal();
   };
 
   // ! confirm Update
@@ -45,7 +45,7 @@ const UsersRow = ({ user, index, refetch }) => {
             text: "User has been updated.",
             icon: "success",
           });
-          modalRef.current.close();
+          modalRef1.current.close();
           refetch();
         } else {
           Swal.fire({
@@ -53,7 +53,7 @@ const UsersRow = ({ user, index, refetch }) => {
             title: "Oops...",
             text: "You didn't make any changes",
           });
-          modalRef.current.close();
+          modalRef1.current.close();
         }
       })
       .catch((err) => console.log(err));
@@ -126,7 +126,7 @@ const UsersRow = ({ user, index, refetch }) => {
       </tr>
 
       {/* modal */}
-      <dialog id="my_modal_4" className="modal md:ml-[120px]" ref={modalRef}>
+      <dialog id="my_modal_4" className="modal md:ml-[120px]" ref={modalRef1}>
         <div className="modal-box max-w-md">
           <h1 className="text-xl text-[#1E2865] text-center font-medium">
             Change Role And Status

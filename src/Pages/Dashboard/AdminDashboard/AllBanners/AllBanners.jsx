@@ -31,7 +31,7 @@ const AllBanners = () => {
       </Helmet>
 
       <SectionHeder
-        header={"manage all banners"}
+        header={"Manage All Banners"}
         description={"Hi Admin! You Can Handle All Banners of Your Site"}
       ></SectionHeder>
 

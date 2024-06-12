@@ -44,18 +44,24 @@ const AppointRow = ({ appoint, index, refetch }) => {
         <td>{date}</td>
         <td>{price} $</td>
         <td>
-          {status === "canceled" ? (
-            <span className="text-white bg-orange-500 py-2 rounded-full px-4">
+          {status === "canceled" && (
+            <span className="text-white bg-[#FF0000] py-2 rounded-full px-4">
               {status}
             </span>
-          ) : (
-            <span className="text-white bg-[#2EE2B5] py-2 rounded-full px-4">
+          )}
+          {status === "pending" && (
+            <span className="text-white bg-[#FFA500] py-2 rounded-full px-4">
+              {status}
+            </span>
+          )}
+          {status === "delivered" && (
+            <span className="text-white bg-[#32CD32] py-2 rounded-full px-4">
               {status}
             </span>
           )}
         </td>
         <td>
-          {status === "canceled" ? (
+          {(status === "canceled" || status === "delivered") ? (
             <button
               disabled
               className="relative border inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all rounded-full bg-gray-50 group mr-2 text-gray-300"

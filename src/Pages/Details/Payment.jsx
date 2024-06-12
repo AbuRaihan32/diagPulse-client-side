@@ -16,7 +16,7 @@ const Payment = ({test, modalRef, refetch}) => {
 
 
 Payment.propTypes = {
-    test: PropTypes.node,
+    test: PropTypes.object,
     modalRef: PropTypes.node,
     refetch: PropTypes.node
 }

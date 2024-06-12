@@ -31,7 +31,7 @@ const AllTests = () => {
       </Helmet>
 
       <SectionHeder
-        header={"manage all Tests"}
+        header={"Manage All Tests"}
         description={"Hi Admin! You Can Handle All tests added by admins"}
       ></SectionHeder>
 

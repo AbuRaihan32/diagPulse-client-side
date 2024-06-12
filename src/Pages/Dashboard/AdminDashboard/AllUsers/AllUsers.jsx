@@ -30,7 +30,7 @@ const AllUsers = () => {
         <title>DiagPulse || All Users</title>
       </Helmet>
 
-      <SectionHeder header={'manage all Users'}  description={'Hi Admin! You Can Handle All Users of Your Site'}></SectionHeder>
+      <SectionHeder header={'Manage All Users'}  description={'Hi Admin! You Can Handle All Users of Your Site'}></SectionHeder>
 
       {allUsers?.length < 1 ? (
         <div className="w-full h-[300px] flex items-center justify-center font-semibold text-4xl">

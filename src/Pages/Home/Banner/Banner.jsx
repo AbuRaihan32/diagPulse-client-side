@@ -1,23 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-
 import { Navigation } from "swiper/modules";
 import BannerSlides from "./BannerSlides";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import { PuffLoader } from "react-spinners";
+import useBanner from "../../../Hooks/useBanner";
 
 const Banner = () => {
-  const axiosPublic = useAxiosPublic();
-
-  const { data: bannerData = {}, isPending, isError} = useQuery({
-    queryKey: ["banners"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/activeBanner?status=Active");
-      return res.data;
-    },
-  });
+  const {bannerData, isPending, isError} = useBanner();
 
   if (isPending) {
     return (

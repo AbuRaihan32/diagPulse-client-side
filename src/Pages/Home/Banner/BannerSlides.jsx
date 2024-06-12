@@ -24,9 +24,14 @@ const BannerSlides = ({ banner }) => {
               <CouponCode code={banner.couponCode}></CouponCode>
             </div>
 
-            <p className="text-sm w-fit mt-2 text-red-700 font-medium">
-              Valid Till : {banner.expireDate}
-            </p>
+            <div className="flex gap-3">
+              <p className="text-sm w-fit mt-2 text-red-700 font-medium">
+                Discount Rate : {banner.discountRate}
+              </p>
+              <p className="text-sm w-fit mt-2 text-red-700 font-medium">
+                Valid Till : {banner.expireDate}
+              </p>
+            </div>
 
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <Link
