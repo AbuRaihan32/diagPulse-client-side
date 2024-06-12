@@ -5,10 +5,17 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { FaFileDownload } from "react-icons/fa";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas-pro";
+import SectionHeder from "../../../../Components/SectionHeder";
 
 const UsersRow = ({ user, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const modalRef1 = useRef(null);
+  const modalRef2 = useRef(null);
+  const printRef = useRef();
 
   const isAdmin = user.role === "Admin";
   const isActive = user.status === "Active";
@@ -16,23 +23,39 @@ const UsersRow = ({ user, index, refetch }) => {
   const [changeRole, setChangeRole] = useState(isAdmin);
   const [changeStatus, setChangeStatus] = useState(isActive);
 
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const { name, email, image, status, role, _id } = user;
+  const { _id, name, email, image, district, upazila, blood, status, role } =
+    user;
 
   // ! handle Update
   const handleUpdate = () => {
     modalRef1.current.showModal();
   };
 
+  const handleDownload = () => {
+    modalRef2.current.showModal();
+  };
+
+  const downloadPDF = () => {
+    const input = printRef.current;
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+        pdf.save("user-details.pdf");
+      })
+      .catch((err) => console.log(err));
+  };
+
   // ! confirm Update
   const onSubmit = (data) => {
     const { status, role } = data;
 
-    console.log(data)
+    console.log(data);
     const info = { status, role };
 
     // update
@@ -123,6 +146,11 @@ const UsersRow = ({ user, index, refetch }) => {
             <RiDeleteBin6Line></RiDeleteBin6Line>
           </button>
         </td>
+        <td>
+          <Link onClick={handleDownload}>
+            <button className="btn btn-outline">See User Info</button>
+          </Link>
+        </td>
       </tr>
 
       {/* modal */}
@@ -203,6 +231,143 @@ const UsersRow = ({ user, index, refetch }) => {
               </div>
             </div>
           </form>
+        </div>
+      </dialog>
+
+      {/* modal 2 */}
+      <dialog id="my_modal_4" className="modal md:ml-[120px]" ref={modalRef2}>
+        <div className="modal-box w-11/12 md:max-w-[60%] ">
+          <div className="w-full " ref={printRef}>
+            <div className="w-full px-5 md:px-10">
+              <SectionHeder header="User Details Info"></SectionHeder>
+              <div>
+                {/* row 1 */}
+                <div className="md:flex gap-4">
+                  <div className="w-full mb-3">
+                    <label className="text-xs font-semibold px-1">
+                      Your Name
+                    </label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {name}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full mb-3">
+                    <label className="text-xs font-semibold px-1">
+                      Your Email
+                    </label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {email}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* row 2 */}
+                <div className="md:flex gap-4">
+                  <div className="w-full mb-3">
+                    <label className="text-xs font-semibold px-1">
+                      Photo URL
+                    </label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {image}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* row 3 */}
+                <div className="md:flex gap-4">
+                  <div className="md:w-1/2 mb-3">
+                    <label className="text-xs font-semibold px-1">
+                      District
+                    </label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {district}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="md:w-1/2 mb-3">
+                    <label className="text-xs font-semibold px-1">
+                      Upazila
+                    </label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {upazila}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* row 4 */}
+                <div className="md:flex gap-4">
+                  <div className="md:w-1/2 mb-3">
+                    <label className="text-xs font-semibold px-1">Status</label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {status}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="md:w-1/2 mb-3">
+                    <label className="text-xs font-semibold px-1">
+                      Blood Group
+                    </label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {blood}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="md:w-1/2 mb-3">
+                    <label className="text-xs font-semibold px-1">Role</label>
+                    <div className="flex flex-col border py-2">
+                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                        {role}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-around gap-4 mt-8">
+                <button
+                  type="button"
+                  onClick={downloadPDF}
+                  className="relative border inline-flex items-center justify-start px-6 py-2 overflow-hidden font-medium transition-all rounded-full bg-[#0F2976] group mr-2 text-white"
+                >
+                  <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                  <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
+                    <span className="flex items-center gap-2">
+                      <FaFileDownload />
+                      <span> Download info </span>
+                    </span>
+                  </span>
+                </button>
+                <div className="">
+                  <form method="dialog" className="flex justify-center">
+                    {/* if there is a button, it will close the modal */}
+                    <button className="relative border inline-flex items-center justify-start px-6 py-2 overflow-hidden font-medium transition-all rounded-full bg-[#0F2976] group mr-2 text-white">
+                      <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:-ml-2 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
+                        <span className="flex items-center gap-2">
+                          <span> close </span>
+                        </span>
+                      </span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </dialog>
     </>
