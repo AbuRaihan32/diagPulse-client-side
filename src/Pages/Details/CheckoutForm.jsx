@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 const CheckoutForm = ({ test, modalRef, refetch }) => {
   const {
@@ -17,8 +18,9 @@ const CheckoutForm = ({ test, modalRef, refetch }) => {
     price,
     _id,
     slot,
-    bookedCount
+    bookedCount,
   } = test;
+
   const stripe = useStripe();
   const { user } = useAuth();
   const elements = useElements();
@@ -69,24 +71,61 @@ const CheckoutForm = ({ test, modalRef, refetch }) => {
       });
 
     if (confirmError) {
-      console.log("error", confirmError);
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: confirmError.message,
+      });
+      modalRef.current.close();
     } else {
-      console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
         Swal.fire({
           title: "Payment Successful",
           text: `Your TransitionId: ${paymentIntent.id}`,
           icon: "success",
         });
-        modalRef.current.close();
 
-        // update slot
+        // ! save Payment history in the database
+
+        const localDate = new Date();
+        const utcDate = moment(localDate).utc().format();
+
+        const payment = {
+          name: user.displayName,
+          email: user.email,
+          date: utcDate,
+          amount: price,
+          transitionId: paymentIntent.id,
+          testId: _id,
+          status: "pending",
+        };
+
+        axiosSecure.post("/paymentHistory", payment).then((res) => {
+          console.log(res.data);
+        });
+
+        // ! save appointment in the database
+
+        const appointment = {
+          name: name,
+          price: price,
+          email: user.email,
+          date: utcDate,
+          testId: _id,
+          status: "pending",
+        };
+
+        axiosSecure.post("/appointments", appointment).then((res) => {
+          console.log(res.data);
+        });
+
+        //! update slot
         const slotNum = parseInt(slot);
         const UpdatedCount = slotNum - 1;
 
         const bookedCountNum = parseInt(bookedCount);
         const UpdatedBookedCount = bookedCountNum ? bookedCountNum + 1 : 1;
-        console.log(UpdatedBookedCount)
+        console.log(UpdatedBookedCount);
         const newSlot = {
           slot: UpdatedCount,
           name,
@@ -97,12 +136,11 @@ const CheckoutForm = ({ test, modalRef, refetch }) => {
           sample_type,
           purpose,
           price,
-          bookedCount: UpdatedBookedCount ,
-          reportStatus: 'Pending',
+          bookedCount: UpdatedBookedCount,
         };
 
-        axiosSecure.patch(`/tests/${_id}`, newSlot).then((res) => {
-          console.log(res.data);
+        axiosSecure.patch(`/tests/${_id}`, newSlot).then(() => {
+          modalRef.current.close();
           refetch();
         });
       }
