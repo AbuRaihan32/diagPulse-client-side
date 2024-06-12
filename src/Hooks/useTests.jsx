@@ -7,6 +7,7 @@ const useTests = () => {
     data: allTests = [],
     isPending,
     isError,
+    isLoading
   } = useQuery({
     queryKey: ["allTestForUsers"],
     queryFn: async () => {
@@ -19,7 +20,7 @@ const useTests = () => {
       return filteredTests;
     },
   });
-  return { allTests, isPending, isError };
+  return { allTests, isPending, isError, isLoading};
 };
 
 export default useTests;

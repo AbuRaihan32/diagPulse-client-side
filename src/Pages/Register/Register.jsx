@@ -48,7 +48,7 @@ const Register = () => {
   const onSubmit = (data) => {
     const {
       blood,
-      // confirmPassword,
+      confirmPassword,
       district,
       email,
       image,
@@ -56,6 +56,7 @@ const Register = () => {
       password,
       upazila,
     } = data;
+    
 
     if (!/[A-Z]/.test(password)) {
       return setError("Password must contain an uppercase.");
@@ -67,7 +68,11 @@ const Register = () => {
     if (password.length < 6) {
       return setError("Password must be at least 6 character");
     }
+    if(confirmPassword !== password){
+      return setError("Password doesn't match")
+    }
     setError("");
+
 
     const userInfo = {
       name,
@@ -353,15 +358,15 @@ const Register = () => {
 
                 {/* navigator */}
                 <p className="text-[16] mt-2 text-center sm:px-6 ">
-                  Do Not have an account?
+                  Already have an account?
                   <Link
-                    to={"/register"}
+                    to={"/login"}
                     rel="noopener noreferrer"
                     href="#"
                     className="underline text-blue-600"
                   >
                     {" "}
-                    Register{" "}
+                    Login{" "}
                   </Link>
                 </p>
               </div>

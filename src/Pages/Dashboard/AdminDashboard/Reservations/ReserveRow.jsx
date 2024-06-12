@@ -2,7 +2,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 
-const AppointRow = ({ appoint, index, refetch }) => {
+const ReserveRow = ({ appoint, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
 
   const { _id, name, date, price, status } = appoint;
@@ -72,10 +72,10 @@ const AppointRow = ({ appoint, index, refetch }) => {
     </>
   );
 };
-AppointRow.propTypes = {
+ReserveRow.propTypes = {
   appoint: PropTypes.object.isRequired,
   refetch: PropTypes.func.isRequired,
   index: PropTypes.number,
 };
 
-export default AppointRow;
+export default ReserveRow;

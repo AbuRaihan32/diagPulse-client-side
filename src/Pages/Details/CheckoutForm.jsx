@@ -27,7 +27,6 @@ const CheckoutForm = ({ test, modalRef, refetch }) => {
   const [error, setError] = useState("");
   const axiosSecure = useAxiosSecure();
   const [clientSecret, setClientSecret] = useState("");
-
   useEffect(() => {
     axiosSecure.post("create-payment-intent", { price }).then((res) => {
       setClientSecret(res.data.clientSecret);

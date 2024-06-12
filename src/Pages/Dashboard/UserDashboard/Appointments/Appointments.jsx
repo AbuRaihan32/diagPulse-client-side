@@ -3,9 +3,11 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { PuffLoader } from "react-spinners";
 import AppointRow from "./AppointRow";
 import SectionHeder from "../../../../Components/SectionHeder";
+import useAuth from "../../../../Hooks/useAuth";
 
 const Appointments = () => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   const {
     data: appointments = [],
@@ -14,7 +16,9 @@ const Appointments = () => {
   } = useQuery({
     queryKey: ["appointments"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/appointments`);
+      const res = await axiosSecure.get(
+        `/appointments/search?email=${user.email}`
+      );
       return res.data;
     },
   });
@@ -33,29 +37,38 @@ const Appointments = () => {
         header="Upcoming Appointments"
         description="All test cases that you have paid and booked are displayed here"
       ></SectionHeder>
-      <table className="table">
-        {/* head */}
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Appointment Name</th>
-            <th>Date & Time</th>
-            <th>Email</th>
-            <th>status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appoint, index) => (
-            <AppointRow
-              key={appoint._id}
-              appoint={appoint}
-              index={index}
-              refetch={refetch}
-            ></AppointRow>
-          ))}
-        </tbody>
-      </table>
+
+      {appointments?.length < 1 ? (
+        <div className="w-full h-[300px] flex items-center justify-center font-semibold text-4xl">
+          <div className="text-center">No Appointment Available</div>
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Appointment Name</th>
+                <th>Date & Time</th>
+                <th>Price</th>
+                <th>status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {appointments.map((appoint, index) => (
+                <AppointRow
+                  key={appoint._id}
+                  appoint={appoint}
+                  index={index}
+                  refetch={refetch}
+                ></AppointRow>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   );
 };

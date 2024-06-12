@@ -9,7 +9,7 @@ import useTests from "../../Hooks/useTests";
 import { useNavigation } from "react-router-dom";
 
 const AllTestsFoUser = () => {
-  const {allTests, isPending} = useTests();
+  const {allTests, isPending, isLoading} = useTests();
   const [filteredTests, setFilteredTests] = useState([]);
   const navigation = useNavigation();
 
@@ -44,7 +44,7 @@ const AllTestsFoUser = () => {
     setFilteredTests(sortedTests);
   };
 
-  if (isPending) {
+  if (isPending || isLoading) {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
         <PuffLoader color="#25BCCF"></PuffLoader>
@@ -114,7 +114,7 @@ const AllTestsFoUser = () => {
         </div>
       ) : (
         <>
-          {filteredTests?.length < 1 ? (
+          {(!filteredTests?.length)? (
             <div className="text-2xl flex items-center justify-center col-span-3 mt-8">
               <p>No available tests match your search criteria.</p>
             </div>
