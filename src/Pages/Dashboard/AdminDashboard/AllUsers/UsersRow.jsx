@@ -5,7 +5,6 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
-import SectionHeder from "../../../../Components/SectionHeder";
 
 const UsersRow = ({ user, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -20,7 +19,6 @@ const UsersRow = ({ user, index, refetch }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   const { name, email, image, status, role, _id } = user;

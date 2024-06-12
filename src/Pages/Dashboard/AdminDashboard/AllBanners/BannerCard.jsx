@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 
-const BannerCard = ({ banner, index, refetch }) => {
+const BannerCard = ({ banner, refetch }) => {
   const [change, setChange] = useState(true);
   const axiosSecure = useAxiosSecure();
   const modalRef = useRef(null);
@@ -113,50 +113,60 @@ const BannerCard = ({ banner, index, refetch }) => {
 
   return (
     <>
-      <div className="flex items-center justify-center mb-6">
-        <div className="relative flex w-[95%] flex-col lg:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
-          <div style={bgStyle} className="relative m-0 lg:w-2/5 shrink-0 overflow-hidden rounded-xl lg:rounded-r-none bg-white bg-clip-border text-gray-700">
+      <div className="flex items-center justify-center mb-2">
+        <div className="relative flex w-[95%] flex-col lg:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] mt-4">
+          <div
+            style={bgStyle}
+            className="relative m-0 lg:w-2/5 shrink-0 overflow-hidden rounded-xl lg:rounded-r-none bg-white bg-clip-border text-gray-700"
+          >
             <img
               src={image}
               alt="image"
-              className="w-48 h-36 object-cover absolute right-0 border-4 border-r-0 border-t-0 rounded-bl-[150px] border-[#1E40AF]"
+              className="w-52 h-full object-cover absolute right-0 border-4 border-r-0 border-y-0 rounded-l-full border-[#1E40AF]"
             />
           </div>
           {/* <img src={image} alt="image" className="object-cover absolute z-10 w-40 h-32 top-[30%] left-[25%]" /> */}
           <div className="p-6 relative">
-            <p className="absolute bg-green-700 text-white p-1 md:p-2 rounded-md right-2 top-5 md:right-5 md:top-5">
+            <p className="absolute border text-[#32cd32] border-[#32cd32] md:px-5 px-2 py-1 rounded-full right-2 top-5 md:right-5 md:top-5">
               {status}
             </p>
-            <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-pink-500 antialiased">
+            <h6 className="mb-4 block font-sans text-base font-semibold leading-relaxed tracking-normal text-red-600 antialiased">
               Expire In : {expireDate}
             </h6>
-            <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+            <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-[#072070]">
               {title}
             </h4>
-            <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+            <p className="mb-3 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
               {text}
             </p>
-            <div className="flex justify-around items-center">
-              <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-pink-500 antialiased">
+            <div className="flex gap-8 items-center">
+              <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal antialiased">
                 Coupon Code : {couponCode}
               </h6>
 
-              <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-pink-500 antialiased">
+              <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal antialiased">
                 Discount Rate : {discountRate}
               </h6>
             </div>
-            <div className="flex justify-around items-center">
+            <div className="flex justify-evenly items-center">
               <button
                 onClick={() => handleUpdate(_id)}
-                className="btn btn-accent"
+                className="relative md:w-[25%] border inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all rounded-full bg-[#1E3A8A] group mr-2 text-white"
               >
-                Update
+                <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+                <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
+                  <span className="">Update</span>
+                </span>
               </button>
+
               <button
                 onClick={() => handleDelete(_id)}
-                className="btn btn-accent"
+                className="relative md:w-[25%] border inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all rounded-full bg-[#1E3A8A] group mr-2 text-white"
               >
-                Delete
+                <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+                <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
+                  <span className="">Delete</span>
+                </span>
               </button>
             </div>
           </div>
@@ -341,7 +351,7 @@ const BannerCard = ({ banner, index, refetch }) => {
 
 BannerCard.propTypes = {
   banner: PropTypes.object.isRequired,
-  index: PropTypes.number,
+  refetch: PropTypes.node,
 };
 
 export default BannerCard;

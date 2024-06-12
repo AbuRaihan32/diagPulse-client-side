@@ -14,7 +14,7 @@ const DashboardRoot = () => {
           {isAdmin ? <AdminNavbar></AdminNavbar> : <UserNavbar></UserNavbar>}
         </div>
       </div>
-      <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
+      <div className="h-full ml-14 mb-10 md:ml-64">
         <div className="w-[90%] mx-auto">
           <Outlet></Outlet>
         </div>

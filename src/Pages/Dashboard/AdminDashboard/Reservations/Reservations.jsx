@@ -84,11 +84,12 @@ const Reservations = () => {
           <thead>
             <tr className="bg-gray-100">
               <th>No.</th>
-              <th>Appointment Name</th>
+              <th>Name</th>
               <th>Date & Time</th>
               <th>Price</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th> Status</th>
+              <th> Action</th>
+              <th> Action</th>
             </tr>
           </thead>
           <tbody>
@@ -99,10 +100,10 @@ const Reservations = () => {
                 </td>
               </tr>
             ) : (
-              searchedRes.map((appoint, index) => (
+              searchedRes.map((reserve, index) => (
                 <ReserveRow
-                  key={appoint._id}
-                  appoint={appoint}
+                  key={reserve._id}
+                  reserve={reserve}
                   index={index}
                   refetch={refetch}
                 ></ReserveRow>
@@ -111,7 +112,7 @@ const Reservations = () => {
             {reservations.length === 0 && !isPending && (
               <tr>
                 <td colSpan="6" className="text-center">
-                  No Appointments Available
+                  No Reservation Available
                 </td>
               </tr>
             )}

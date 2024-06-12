@@ -44,9 +44,15 @@ const AppointRow = ({ appoint, index, refetch }) => {
         <td>{date}</td>
         <td>{price} $</td>
         <td>
-          <span className="text-red-600 bg-[#2EE2B5] py-2 rounded-full px-4 font-bold">
-            {status}
-          </span>
+          {status === "canceled" ? (
+            <span className="text-white bg-orange-500 py-2 rounded-full px-4">
+              {status}
+            </span>
+          ) : (
+            <span className="text-white bg-[#2EE2B5] py-2 rounded-full px-4">
+              {status}
+            </span>
+          )}
         </td>
         <td>
           {status === "canceled" ? (
