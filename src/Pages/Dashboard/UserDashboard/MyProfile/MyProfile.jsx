@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAdmin from "../../../../Hooks/useAdmin";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const MyProfile = () => {
   const {isAdmin} = useAdmin();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [district, setDistrict] = useState([]);
   const [upazila, setUpazila] = useState([]);
   const { user } = useAuth();
@@ -38,7 +38,7 @@ const MyProfile = () => {
   const { data: profile = {}, refetch } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/user?email=${user.email}`);
+      const res = await axiosSecure.get(`/user?email=${user.email}`);
       return res.data;
     },
   });
@@ -61,7 +61,7 @@ const MyProfile = () => {
     };
 
     // ! update profile
-    axiosPublic.patch(`/user/${profile._id}`, updatedUser).then((res) => {
+    axiosSecure.patch(`/user/${profile._id}`, updatedUser).then((res) => {
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           title: "Updated",

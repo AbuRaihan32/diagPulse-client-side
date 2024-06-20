@@ -85,11 +85,13 @@ const Reservations = () => {
             <tr className="bg-gray-100">
               <th>No.</th>
               <th>Name</th>
+              <th>Email</th>
               <th>Date & Time</th>
               <th>Price</th>
               <th> Status</th>
               <th> Action</th>
               <th> Action</th>
+              <th> Action </th>
             </tr>
           </thead>
           <tbody>

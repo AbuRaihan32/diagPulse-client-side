@@ -50,7 +50,7 @@ const Navbar = () => {
                   }
                   to={"/dashboard/allUsers"}
                 >
-                  Admin Dashboard
+                  Dashboard
                 </NavLink>
               </li>
             </>
@@ -63,7 +63,7 @@ const Navbar = () => {
                       ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
                       : "py-[6px] px-3"
                   }
-                  to={"/dashboard/myProfile"}
+                  to={"/dashboard/userHome"}
                 >
                   Dashboard
                 </NavLink>

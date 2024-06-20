@@ -1,5 +1,5 @@
 import { CiBoxes, CiLineHeight } from "react-icons/ci";
-import { FaUser, FaUsers } from "react-icons/fa";
+import { FaHome, FaUser, FaUsers } from "react-icons/fa";
 import { FiAirplay } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { IoWalletOutline } from "react-icons/io5";
@@ -20,6 +20,24 @@ const AdminNavbar = () => {
           </div>
         </li>
 
+        {/* Admin Home */}
+        <li>
+          <NavLink
+            to={"/dashboard/adminHome"}
+            className={({ isActive }) =>
+              isActive
+                ? "relative flex flex-row items-center h-11 outline-none bg-blue-800 dark:bg-gray-600 text-white-600 text-white-800 border-l-4 border-blue-500 dark:border-gray-800 pr-6"
+                : "relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            }
+          >
+            <span className="inline-flex justify-center items-center ml-4">
+              <FaUsers></FaUsers>
+            </span>
+            <span className="ml-2 text-sm tracking-wide truncate">
+              Admin Home
+            </span>
+          </NavLink>
+        </li>
         {/* All user */}
         <li>
           <NavLink
@@ -154,7 +172,24 @@ const AdminNavbar = () => {
             <span className="inline-flex justify-center items-center ml-4">
               <GoHome></GoHome>
             </span>
-            <span className="ml-2 text-sm tracking-wide truncate">Home</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Website Home Page</span>
+          </NavLink>
+        </li>
+
+        {/* User Dashboard Home*/}
+        <li>
+          <NavLink
+            to={"/dashboard/userHome"}
+            className={({ isActive }) =>
+              isActive
+                ? "relative flex flex-row items-center h-11 outline-none bg-blue-800 dark:bg-gray-600 text-white-600 text-white-800 border-l-4 border-blue-500 dark:border-gray-800 pr-6"
+                : "relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            }
+          >
+            <span className="inline-flex justify-center items-center ml-4">
+              <FaHome></FaHome>
+            </span>
+            <span className="ml-2 text-sm tracking-wide truncate">User Dashboard Home</span>
           </NavLink>
         </li>
 

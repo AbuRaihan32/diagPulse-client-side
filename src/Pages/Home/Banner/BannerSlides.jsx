@@ -19,7 +19,7 @@ const BannerSlides = ({ banner }) => {
               {banner.title}
             </h1>
 
-            <p className="mt-2 max-w-lg sm:text-xl/relaxed">{banner.text}</p>
+            <p className="mt-2 max-w-lg sm:text-xl/relaxed text-black">{banner.text}</p>
             <div className="mt-3">
               <CouponCode code={banner.couponCode}></CouponCode>
             </div>
@@ -46,7 +46,7 @@ const BannerSlides = ({ banner }) => {
 
               <Link
                 to={"/allTestForUser"}
-                className="relative border border-[#2EE9B1] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group mr-2"
+                className="relative border border-[#2EE9B1] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group mr-2 text-[#0F2976]"
               >
                 <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                 <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">

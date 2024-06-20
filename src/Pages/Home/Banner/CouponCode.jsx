@@ -31,7 +31,7 @@ const CouponCode = ({code}) => {
         <span
           id="cpnBtn"
           onClick={copyToClipboard}
-          className="border border-white bg-white px-4 py-2 rounded-r cursor-pointer"
+          className="border border-white bg-white px-4 py-2 rounded-r cursor-pointer text-black"
         >
           Copy Code
         </span>

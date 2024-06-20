@@ -17,6 +17,8 @@ import PrivateRouts from "./PrivateRoutes";
 import Home from "../Pages/Home/Home/Home";
 import AllTestsForUser from "../Pages/AllTestsFoUser/AllTestsForUser";
 import Details from "../Pages/Details/Details";
+import UserHome from "../Pages/Dashboard/UserDashboard/UserHome/UserHome";
+import AdminHome from "../Pages/Dashboard/AdminDashboard/AdminHome/AdminHome";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +62,10 @@ export const router = createBrowserRouter([
     children: [
       // Public Routes
       {
+        path: 'userHome',
+        element: <UserHome></UserHome>
+      },
+      {
         path: "myProfile",
         element: <MyProfile></MyProfile>,
       },
@@ -73,6 +79,11 @@ export const router = createBrowserRouter([
       },
 
       // Admin Routes
+
+      {
+        path: 'adminHome',
+        element: <AdminHome></AdminHome>
+      },
       {
         path: "allUsers",
         element: <AllUsers></AllUsers>,
