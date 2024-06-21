@@ -11,6 +11,10 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
+// ! img bb api and key
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const Register = () => {
   const { createUser, logOut, updateUser } = useAuth();
   const [error, setError] = useState("");
@@ -45,18 +49,9 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    const {
-      blood,
-      confirmPassword,
-      district,
-      email,
-      image,
-      name,
-      password,
-      upazila,
-    } = data;
-    
+  const onSubmit = async (data) => {
+    const { blood, confirmPassword, district, email, name, password, upazila } =
+      data;
 
     if (!/[A-Z]/.test(password)) {
       return setError("Password must contain an uppercase.");
@@ -68,51 +63,61 @@ const Register = () => {
     if (password.length < 6) {
       return setError("Password must be at least 6 character");
     }
-    if(confirmPassword !== password){
-      return setError("Password doesn't match")
+    if (confirmPassword !== password) {
+      return setError("Password doesn't match");
     }
     setError("");
 
+    // ! host image in img bb and get the url
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(image_upload_api, imageFile, {
+      headers: {
+        "Content-Type": `multipart/form-data`,
+      },
+    });
 
-    const userInfo = {
-      name,
-      email,
-      image,
-      district,
-      upazila,
-      blood,
-      status: 'Active', 
-      role: 'User'
-    };
+    if (res.data.success) {
+      const image = res.data.data.display_url;
+      const userInfo = {
+        name,
+        email,
+        image,
+        district,
+        upazila,
+        blood,
+        status: "Active",
+        role: "User",
+      };
 
-    //! create user
-    createUser(email, password)
-      // const user = {email: email}
-      .then(() => {
-        // Save user info to database
-        axiosPublic.post("/user", userInfo).then((res) => {
-          if (res.data.insertedId) {
-            Swal.fire({
-              title: "Registered!",
-              text: "You have been Registered Successfully.",
-              icon: "success",
-            });
+      //! create user
+      createUser(email, password)
+        // const user = {email: email}
+        .then(() => {
+          // Save user info to database
+          axiosPublic.post("/user", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: "Registered!",
+                text: "You have been Registered Successfully.",
+                icon: "success",
+              });
 
-            updateUser(name, image).then(() => {});
-            logOut().then(() => {
-              navigate("/login");
-            });
-          }
+              updateUser(name, image).then(() => {});
+              logOut().then(() => {
+                navigate("/login");
+              });
+            }
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err.message,
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
         });
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-          footer: '<a href="#">Why do I have this issue?</a>',
-        });
-      });
+    }
   };
 
   return (
@@ -129,7 +134,7 @@ const Register = () => {
               </div>
               <div className="w-full md:w-[60%] py-10 px-5 md:px-10">
                 <div className="text-center mb-3">
-                  <h1 className="font-bold text-3xl text-gray-900">SIGN UN</h1>
+                  <h1 className="font-bold text-3xl text-gray-900">SIGN UP</h1>
                   <p>Enter your information to Sign In</p>
                 </div>
 
@@ -143,7 +148,7 @@ const Register = () => {
                       <div className="flex flex-col">
                         <input
                           type="text"
-                          className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          className="input input-bordered input-accent w-full"
                           placeholder="Your Name"
                           {...register("name", { required: true })}
                         />
@@ -162,7 +167,7 @@ const Register = () => {
                       <div className="flex flex-col">
                         <input
                           type="email"
-                          className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          className="input input-bordered input-accent w-full"
                           placeholder="johnsmith@example.com"
                           {...register("email", { required: true })}
                         />
@@ -179,13 +184,12 @@ const Register = () => {
                   <div className="md:flex gap-4">
                     <div className="md:w-1/2 mb-3">
                       <label className="text-xs font-semibold px-1">
-                        Photo URL
+                        Photo
                       </label>
                       <div className="flex flex-col">
                         <input
-                          type="text"
-                          className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="Photo URL"
+                          type="file"
+                          className="file-input file-input-bordered file-input-accent w-full"
                           {...register("image", { required: true })}
                         />
                         {errors.image && (
@@ -202,7 +206,7 @@ const Register = () => {
                       </label>
                       <div className="flex flex-col">
                         <select
-                          className="select select-bordered w-full max-w-xs"
+                          className="select select-bordered select-accent w-full"
                           {...register("blood", { required: true })}
                         >
                           <option disabled selected>
@@ -234,7 +238,7 @@ const Register = () => {
                       </label>
                       <div className="flex flex-col">
                         <select
-                          className="select select-bordered w-full max-w-xs"
+                          className="select select-bordered w-full select-accent"
                           {...register("district", { required: true })}
                         >
                           <option disabled selected>
@@ -258,7 +262,7 @@ const Register = () => {
                       </label>
                       <div className="flex flex-col">
                         <select
-                          className="select select-bordered w-full max-w-xs"
+                          className="select select-bordered w-full select-accent"
                           {...register("upazila", { required: true })}
                         >
                           <option disabled selected>
@@ -286,7 +290,7 @@ const Register = () => {
                       <div className="flex flex-col relative">
                         <input
                           type={show ? "text" : "password"}
-                          className="w-full pl-3 pr-12 pt-2 pb-[6px] rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          className="input input-bordered input-accent w-full"
                           placeholder="password"
                           {...register("password", { required: true })}
                         />
@@ -319,7 +323,7 @@ const Register = () => {
                       <div className="flex flex-col relative">
                         <input
                           type={showConfirm ? "text" : "password"}
-                          className="w-full pl-3 pr-12 pt-2 pb-[6px] rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          className="input input-bordered input-accent w-full"
                           placeholder="confirm password"
                           {...register("confirmPassword", { required: true })}
                         />

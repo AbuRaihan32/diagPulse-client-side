@@ -19,6 +19,7 @@ import AllTestsForUser from "../Pages/AllTestsFoUser/AllTestsForUser";
 import Details from "../Pages/Details/Details";
 import UserHome from "../Pages/Dashboard/UserDashboard/UserHome/UserHome";
 import AdminHome from "../Pages/Dashboard/AdminDashboard/AdminHome/AdminHome";
+import AdminRoutes from "./AdminRoutes";
 
 
 export const router = createBrowserRouter([
@@ -33,7 +34,8 @@ export const router = createBrowserRouter([
       },
       {
         path: '/allTestForUser',
-        element: <AllTestsForUser></AllTestsForUser>
+        element: <AllTestsForUser></AllTestsForUser>,
+        loader: () => fetch('http://localhost:5000/testCount')
       },
       {
         path: 'details/:id',
@@ -82,31 +84,31 @@ export const router = createBrowserRouter([
 
       {
         path: 'adminHome',
-        element: <AdminHome></AdminHome>
+        element: <AdminRoutes><AdminHome></AdminHome></AdminRoutes>
       },
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>,
+        element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>,
       },
       {
         path: "addTest",
-        element: <AddTest></AddTest>,
+        element: <AdminRoutes><AddTest></AddTest></AdminRoutes>,
       },
       {
         path: "allTests",
-        element: <AllTests></AllTests>,
+        element:<AdminRoutes><AllTests></AllTests></AdminRoutes> ,
       },
       {
         path: "addBanner",
-        element: <AddBanner></AddBanner>,
+        element: <AdminRoutes><AddBanner></AddBanner></AdminRoutes>,
       },
       {
         path: "allBanners",
-        element: <AllBanners></AllBanners>,
+        element: <AdminRoutes><AllBanners></AllBanners></AdminRoutes>,
       },
       {
         path: "reservations",
-        element: <Reservations></Reservations>,
+        element: <AdminRoutes><Reservations></Reservations></AdminRoutes>,
       },
     ],
   },

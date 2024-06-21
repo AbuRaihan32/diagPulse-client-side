@@ -1,13 +1,15 @@
 import { Navigate, useLocation } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
+import useAuth from "../Hooks/useAuth";
 import PropTypes from "prop-types";
 import { PuffLoader } from "react-spinners";
-import useAuth from "../Hooks/useAuth";
 
-const PrivateRouts = ({ children }) => {
-  const location = useLocation();
+const AdminRoutes = ({ children }) => {
+  const { isAdmin, isPending } = useAdmin();
   const { user, loading } = useAuth();
+  const location = useLocation();
 
-  if (loading) {
+  if (loading || isPending) {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
         <PuffLoader color="#2EE9B1"></PuffLoader>
@@ -15,13 +17,13 @@ const PrivateRouts = ({ children }) => {
     );
   }
 
-  if (user) {
+  if (user && isAdmin) {
     return children;
   }
-  return <Navigate to={"/login"} state={location.pathname}></Navigate>;
+  return <Navigate to={"/"} state={{ from: location }} replace></Navigate>;
 };
 
-PrivateRouts.propTypes = {
+AdminRoutes.propTypes = {
   children: PropTypes.node,
 };
-export default PrivateRouts;
+export default AdminRoutes;

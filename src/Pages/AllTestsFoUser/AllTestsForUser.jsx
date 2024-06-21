@@ -5,13 +5,36 @@ import { FaSearch } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { PuffLoader } from "react-spinners";
 import { Helmet } from "react-helmet-async";
-import useTests from "../../Hooks/useTests";
-import { useNavigation } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const AllTestsFoUser = () => {
-  const {allTests, isPending, isLoading} = useTests();
+  const axiosSecure = useAxiosSecure();
   const [filteredTests, setFilteredTests] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
   const navigation = useNavigation();
+  const { count } = useLoaderData();
+  const itemsPerPage = 4;
+  const numberOfPage = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPage).keys()];
+
+  const {
+    data: allTests = [],
+    isPending,
+    isLoading
+  } = useQuery({
+    queryKey: ["allTestForUsers", currentPage, itemsPerPage],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/allTests?page=${currentPage}&size=${itemsPerPage}`);
+      const today = new Date();
+      const filteredTests = res.data?.filter(
+        (test) => new Date(test.date) >= today
+      );
+
+      return filteredTests;
+    },
+  });
 
 
   useEffect(() => {
@@ -51,7 +74,7 @@ const AllTestsFoUser = () => {
       </div>
     );
   }
-  if (navigation.state === 'loading') {
+  if (navigation.state === "loading") {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
         <PuffLoader color="#25BCCF"></PuffLoader>
@@ -74,8 +97,8 @@ const AllTestsFoUser = () => {
       </div>
 
       {/* search and sort */}
-      <div className="md:flex justify-around mb-7">
-        <div className="relative inline-flex self-center mb-5 md:mb-0">
+      <div className="flex flex-col items-center justify-center md:flex-row md:justify-evenly gap-3 mb-7 ">
+        <div className="relative inline-flex self-center">
           <div className="text-white text-xl bg-gradient-to-r from-[#25BCCF] to-[#2EE9B1] absolute -top-[2px] right-[2px] m-2 pointer-events-none p-2 rounded-full">
             <IoIosArrowDown className="text-xs"></IoIosArrowDown>
           </div>
@@ -114,12 +137,12 @@ const AllTestsFoUser = () => {
         </div>
       ) : (
         <>
-          {(!filteredTests?.length)? (
+          {!filteredTests?.length ? (
             <div className="text-2xl flex items-center justify-center col-span-3 mt-8">
               <p>No available tests match your search criteria.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-[85%] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-[85%] mx-auto">
               {filteredTests.map((test) => (
                 <AllTestCard key={test._id} test={test}></AllTestCard>
               ))}
@@ -127,6 +150,22 @@ const AllTestsFoUser = () => {
           )}
         </>
       )}
+
+      <div className="mx-auto w-fit mt-10">
+        <button onClick={()=> currentPage > 0 && setCurrentPage(currentPage -1)} className="px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold">«</button>
+        {pages.map((page) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={`px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold ml-2 ${
+              currentPage === page && " bg-emerald-300 text-white"
+            }`}
+            key={page}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={()=> currentPage < pages.length -1 && setCurrentPage(currentPage +1)} className="px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold ml-2">»</button>
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const { isAdmin } = useAdmin();
+  const { isAdmin, isPending } = useAdmin();
 
   const NavLinks = (
     <>
@@ -37,7 +37,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      {user && (
+      {user && !isPending && (
         <>
           {isAdmin ? (
             <>
@@ -48,7 +48,7 @@ const Navbar = () => {
                       ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
                       : "py-[6px] px-3"
                   }
-                  to={"/dashboard/allUsers"}
+                  to={"/dashboard/adminHome"}
                 >
                   Dashboard
                 </NavLink>
@@ -226,13 +226,13 @@ const Navbar = () => {
 
             <Link
               to={"/register"}
-              className="relative border border-[#2EE9B1] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group"
+              className="relative border border-[#2EE9B1]  items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full hover:bg-white group hidden md:inline-flex"
             >
               <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
               <span className="flex items-center justify-center gap-2 relative text-center w-full text-[#2EE9B1] transition-colors duration-300 ease-in-out group-hover:text-white">
                 {" "}
                 <BiLogInCircle className="text-xl"></BiLogInCircle>{" "}
-                <span className="hidden md:inline">Sign Up</span>
+                <span className="">Sign Up</span>
               </span>
             </Link>
           </div>
