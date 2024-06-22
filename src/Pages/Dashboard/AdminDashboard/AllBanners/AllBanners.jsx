@@ -8,7 +8,11 @@ import BannerCard from "./BannerCard";
 const AllBanners = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: allBanners = [], isPending , refetch} = useQuery({
+  const {
+    data: allBanners = [],
+    isPending,
+    refetch,
+  } = useQuery({
     queryKey: ["allBanners"],
     queryFn: async () => {
       const res = await axiosSecure.get("/banners");
@@ -19,7 +23,7 @@ const AllBanners = () => {
   if (isPending) {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
-        <PuffLoader color="#32cd32"></PuffLoader>
+        <PuffLoader color="#2EE9B1"></PuffLoader>
       </div>
     );
   }
@@ -42,7 +46,12 @@ const AllBanners = () => {
       ) : (
         <div className="overflow-x-auto">
           {allBanners.map((banner, index) => (
-            <BannerCard key={banner._id} banner={banner} index={index} refetch={refetch}></BannerCard>
+            <BannerCard
+              key={banner._id}
+              banner={banner}
+              index={index}
+              refetch={refetch}
+            ></BannerCard>
           ))}
         </div>
       )}

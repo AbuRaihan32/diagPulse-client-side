@@ -10,7 +10,7 @@ const FeaturedTests = () => {
   if (isPending) {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
-        <PuffLoader color="#32cd32"></PuffLoader>
+        <PuffLoader color="#2EE9B1"></PuffLoader>
       </div>
     );
   }
@@ -24,7 +24,7 @@ const FeaturedTests = () => {
     );
   }
 
-  const sortedTests = allTests.sort((a, b)=> b.bookedCount - a.bookedCount);
+  const sortedTests = allTests.sort((a, b) => b.bookedCount - a.bookedCount);
 
   return (
     <div className="mt-20">

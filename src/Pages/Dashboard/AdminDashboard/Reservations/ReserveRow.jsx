@@ -45,35 +45,34 @@ const ReserveRow = ({ reserve, index, refetch }) => {
     });
   };
 
-
-    // ! handle delete
-    const handleDelete = () => {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axiosSecure
-            .delete(`/reservation/${_id}`)
-            .then((data) => {
-              if (data.data.deletedCount === 1) {
-                Swal.fire({
-                  title: "Deleted",
-                  text: "Your food has been Deleted.",
-                  icon: "success",
-                });
-                refetch();
-              }
-            })
-            .catch((err) => console.log(err));
-        }
-      });
-    };
+  // ! handle delete
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/reservation/${_id}`)
+          .then((data) => {
+            if (data.data.deletedCount === 1) {
+              Swal.fire({
+                title: "Deleted",
+                text: "Your food has been Deleted.",
+                icon: "success",
+              });
+              refetch();
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
+  };
 
   // ! confirm submit
   const onSubmit = (data) => {
@@ -129,7 +128,7 @@ const ReserveRow = ({ reserve, index, refetch }) => {
             </span>
           )}
           {status === "delivered" && (
-            <span className="text-white bg-[#32CD32] py-2 rounded-full px-4">
+            <span className="text-white bg-[#2EE9B1] py-2 rounded-full px-4">
               {status}
             </span>
           )}
@@ -176,12 +175,14 @@ const ReserveRow = ({ reserve, index, refetch }) => {
         </td>
         <td>
           <button
-          onClick={handleDelete}
+            onClick={handleDelete}
             className="relative border inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all rounded-full bg-[#1E3A8A] group mr-2 text-white w-max"
           >
             <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
             <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
-              <span className=""><RiDeleteBin5Line></RiDeleteBin5Line></span>
+              <span className="">
+                <RiDeleteBin5Line></RiDeleteBin5Line>
+              </span>
             </span>
           </button>
         </td>

@@ -2,10 +2,12 @@ import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { PuffLoader } from "react-spinners";
 import useAuth from "../Hooks/useAuth";
+import useCurrentUser from "../Hooks/useCurrentUser";
 
 const PrivateRouts = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
+  const {currentUser} = useCurrentUser();
 
   if (loading) {
     return (
@@ -15,7 +17,7 @@ const PrivateRouts = ({ children }) => {
     );
   }
 
-  if (user) {
+  if (user && currentUser.status === 'Active') {
     return children;
   }
   return <Navigate to={"/login"} state={location.pathname}></Navigate>;

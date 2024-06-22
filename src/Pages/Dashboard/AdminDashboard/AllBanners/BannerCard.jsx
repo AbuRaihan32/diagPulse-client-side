@@ -127,7 +127,7 @@ const BannerCard = ({ banner, refetch }) => {
           </div>
           {/* <img src={image} alt="image" className="object-cover absolute z-10 w-40 h-32 top-[30%] left-[25%]" /> */}
           <div className="p-6 relative">
-            <p className="absolute border text-[#32cd32] border-[#32cd32] md:px-5 px-2 py-1 rounded-full right-2 top-5 md:right-5 md:top-5">
+            <p className="absolute border text-[#2EE9B1] border-[#2EE9B1] md:px-5 px-2 py-1 rounded-full right-2 top-5 md:right-5 md:top-5">
               {status}
             </p>
             <h6 className="mb-4 block font-sans text-base font-semibold leading-relaxed tracking-normal text-red-600 antialiased">

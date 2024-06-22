@@ -26,7 +26,7 @@ const Appointments = () => {
   if (isPending) {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
-        <PuffLoader color="#32cd32"></PuffLoader>
+        <PuffLoader color="#2EE9B1"></PuffLoader>
       </div>
     );
   }

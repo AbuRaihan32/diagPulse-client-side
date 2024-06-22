@@ -144,6 +144,13 @@ const TestRow = ({ test, index, refetch }) => {
             <RiDeleteBin6Line></RiDeleteBin6Line>
           </button>
         </td>
+        <td>
+          <button
+            className="btn btn-outline"
+          >
+            Reservations
+          </button>
+        </td>
       </tr>
 
       {/* modal */}

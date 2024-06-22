@@ -4,10 +4,12 @@ import { PuffLoader } from "react-spinners";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAdmin from "../../../Hooks/useAdmin";
+import useCurrentUser from "../../../Hooks/useCurrentUser";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const { isAdmin, isPending } = useAdmin();
+  const { currentUser } = useCurrentUser();
 
   const NavLinks = (
     <>
@@ -37,41 +39,56 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      {user && !isPending && (
-        <>
-          {isAdmin ? (
-            <>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
-                      : "py-[6px] px-3"
-                  }
-                  to={"/dashboard/adminHome"}
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
-                      : "py-[6px] px-3"
-                  }
-                  to={"/dashboard/userHome"}
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-            </>
-          )}
-        </>
-      )}
+      {user &&
+        !isPending &&
+        (currentUser.status === "Blocked" ? (
+          <li>
+            <NavLink
+              onClick={() => alert("You Are Blocked By Admin")}
+              className={({ isActive }) =>
+                isActive
+                  ? "hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
+                  : "py-[6px] px-3"
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        ) : (
+          <>
+            {isAdmin ? (
+              <>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
+                        : "py-[6px] px-3"
+                    }
+                    to={"/dashboard/adminHome"}
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "border border-[#2EE9B1] hover:bg-[#00247A] hover:text-white rounded-md py-[7px] px-3"
+                        : "py-[6px] px-3"
+                    }
+                    to={"/dashboard/userHome"}
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </>
+        ))}
     </>
   );
 
@@ -107,7 +124,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu z-30 text-[#32CD32] menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu z-30 text-[#2EE9B1] menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {NavLinks}
             <li>

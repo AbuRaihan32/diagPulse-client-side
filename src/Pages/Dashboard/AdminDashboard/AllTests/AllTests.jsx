@@ -8,10 +8,14 @@ import SectionHeder from "../../../../Components/SectionHeder";
 const AllTests = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: allTests = [], isPending, refetch } = useQuery({
+  const {
+    data: allTests = [],
+    isPending,
+    refetch,
+  } = useQuery({
     queryKey: ["allTests"],
     queryFn: async () => {
-      const res = await axiosSecure.get('/tests')
+      const res = await axiosSecure.get("/tests");
       return res.data;
     },
   });
@@ -19,7 +23,7 @@ const AllTests = () => {
   if (isPending) {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
-        <PuffLoader color="#32cd32"></PuffLoader>
+        <PuffLoader color="#2EE9B1"></PuffLoader>
       </div>
     );
   }
@@ -52,11 +56,17 @@ const AllTests = () => {
                 <th>Purpose</th>
                 <th>Update</th>
                 <th>Delete </th>
+                <th>Reservations </th>
               </tr>
             </thead>
             <tbody>
               {allTests.map((test, index) => (
-                <TestRow key={test._id} test={test} index={index} refetch={refetch}></TestRow>
+                <TestRow
+                  key={test._id}
+                  test={test}
+                  index={index}
+                  refetch={refetch}
+                ></TestRow>
               ))}
             </tbody>
           </table>
