@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
       {
         path: '/allTestForUser',
         element: <AllTestsForUser></AllTestsForUser>,
-        loader: () => fetch('http://localhost:5000/testCount')
+        loader: () => fetch('https://diag-pulse-server-site.vercel.app/testCount')
       },
       {
         path: 'details/:id',

@@ -49,6 +49,7 @@ const AuthProvider = ({ children }) => {
 
   // ! Update User
   const updateUser = (name, image) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: image,
@@ -62,6 +63,7 @@ const AuthProvider = ({ children }) => {
 
   // ! User Observer
   useEffect(() => {
+    setLoading(true);
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       const userInfo = { email: currentUser?.email };
       setUser(currentUser);

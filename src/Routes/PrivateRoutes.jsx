@@ -7,9 +7,9 @@ import useCurrentUser from "../Hooks/useCurrentUser";
 const PrivateRouts = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
-  const {currentUser} = useCurrentUser();
+  const {currentUser, isPending } = useCurrentUser();
 
-  if (loading) {
+  if (loading || isPending) {
     return (
       <div className="w-full h-[200px] flex items-center justify-center">
         <PuffLoader color="#2EE9B1"></PuffLoader>

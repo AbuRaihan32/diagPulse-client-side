@@ -22,11 +22,13 @@ const AllTestsFoUser = () => {
   const {
     data: allTests = [],
     isPending,
-    isLoading
+    isLoading,
   } = useQuery({
     queryKey: ["allTestForUsers", currentPage, itemsPerPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/allTests?page=${currentPage}&size=${itemsPerPage}`);
+      const res = await axiosSecure.get(
+        `/allTests?page=${currentPage}&size=${itemsPerPage}`
+      );
       const today = new Date();
       const filteredTests = res.data?.filter(
         (test) => new Date(test.date) >= today
@@ -35,7 +37,6 @@ const AllTestsFoUser = () => {
       return filteredTests;
     },
   });
-
 
   useEffect(() => {
     setFilteredTests(allTests);
@@ -137,7 +138,7 @@ const AllTestsFoUser = () => {
         </div>
       ) : (
         <>
-          {!filteredTests?.length ? (
+          {!filteredTests?.length && !isPending ? (
             <div className="text-2xl flex items-center justify-center col-span-3 mt-8">
               <p>No available tests match your search criteria.</p>
             </div>
@@ -152,19 +153,33 @@ const AllTestsFoUser = () => {
       )}
 
       <div className="mx-auto w-fit mt-10">
-        <button onClick={()=> currentPage > 0 && setCurrentPage(currentPage -1)} className="px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold">«</button>
+        <button
+          onClick={() => currentPage > 0 && setCurrentPage(currentPage - 1)}
+          className="px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold"
+        >
+          «
+        </button>
         {pages.map((page) => (
           <button
             onClick={() => setCurrentPage(page)}
-            className={`px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold ml-2 ${
-              currentPage === page && " bg-emerald-300 text-white"
-            }`}
+            className={
+              currentPage === page
+                ? "bg-blue-800 text-white px-3 py-2 rounded-lg font-semibold ml-2"
+                : "px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold ml-2 "
+            }
             key={page}
           >
             {page}
           </button>
         ))}
-        <button onClick={()=> currentPage < pages.length -1 && setCurrentPage(currentPage +1)} className="px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold ml-2">»</button>
+        <button
+          onClick={() =>
+            currentPage < pages.length - 1 && setCurrentPage(currentPage + 1)
+          }
+          className="px-3 py-2 bg-gray-200 rounded-lg text-black font-semibold ml-2"
+        >
+          »
+        </button>
       </div>
     </div>
   );

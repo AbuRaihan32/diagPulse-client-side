@@ -171,6 +171,7 @@ const AddBanner = () => {
                   value={change? 'Active' : 'UnActive'}
                   {...register("status")}
                 />
+                <p className="text-xs font-semibold ml-1 text-[#1e5744]">Please click on the field After Change</p>
                 <div
                   onClick={() => setChange(!change)}
                   className="absolute right-5 top-[6px] text-xl"

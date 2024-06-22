@@ -33,7 +33,7 @@ const Reservations = () => {
       setIsNotFound(false);
     } else {
       const filteredReservation = reservations.filter(
-        (res) => res.email === email
+        (res) => res.email.includes(email)
       );
 
       if (filteredReservation.length > 0) {
@@ -97,7 +97,7 @@ const Reservations = () => {
           <tbody>
             {isNotFound ? (
               <tr>
-                <td colSpan="6" className="text-center text-red-600">
+                <td colSpan="9" className="text-center text-red-600">
                   Email not found
                 </td>
               </tr>

@@ -3,7 +3,7 @@ import useAuth from "./useAuth";
 import auth from "../firebase/firebase.init";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://diag-pulse-server-site.vercel.app",
 });
 
 const useAxiosSecure = () => {

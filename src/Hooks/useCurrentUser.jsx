@@ -7,7 +7,7 @@ const useCurrentUser = () => {
     const axiosSecure = useAxiosSecure();
     const {user, loading} = useAuth();
 
-    const { data: currentUser = {} } = useQuery({
+    const { data: currentUser = {} , isPending} = useQuery({
       queryKey: [user?.email, "currentUser"],
       enabled: !loading,
       queryFn: async () => {
@@ -17,7 +17,7 @@ const useCurrentUser = () => {
     });
   
 
-    return {currentUser}
+    return {currentUser, isPending}
 };
 
 export default useCurrentUser;

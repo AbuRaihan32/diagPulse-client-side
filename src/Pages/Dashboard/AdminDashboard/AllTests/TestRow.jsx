@@ -2,13 +2,29 @@ import { useForm } from "react-hook-form";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
+import { useQuery } from "@tanstack/react-query";
 
 const TestRow = ({ test, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const modalRef = useRef(null);
+  const modalRef2 = useRef(null);
+  const [title, setTitle] = useState('');
+
+
+  const { data: reserve = [] } = useQuery({
+    queryKey: [title, "specificAppointments"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/reservation/search?name=${title}`);
+      return res.data;
+    },
+  });
+
+  console.log(reserve)
+
+
   const { register, handleSubmit, reset } = useForm();
 
   const {
@@ -21,12 +37,17 @@ const TestRow = ({ test, index, refetch }) => {
     purpose,
     price,
     slot,
-    date
+    date,
   } = test;
 
   // ! handle Update
   const handleUpdate = () => {
     modalRef.current.showModal();
+  };
+  // ! handle Reservation
+  const handleReserveBtn = (title) => {
+    setTitle(title)
+    modalRef2.current.showModal();
   };
 
   // ! confirm Update
@@ -40,7 +61,7 @@ const TestRow = ({ test, index, refetch }) => {
       purpose,
       price,
       slot,
-      date
+      date,
     } = data;
 
     const newTest = {
@@ -52,7 +73,7 @@ const TestRow = ({ test, index, refetch }) => {
       purpose,
       price,
       slot,
-      date
+      date,
     };
 
     // update
@@ -146,6 +167,7 @@ const TestRow = ({ test, index, refetch }) => {
         </td>
         <td>
           <button
+            onClick={() => handleReserveBtn(name)}
             className="btn btn-outline"
           >
             Reservations
@@ -153,9 +175,12 @@ const TestRow = ({ test, index, refetch }) => {
         </td>
       </tr>
 
-      {/* modal */}
+      {/* modal - 1*/}
       <dialog id="my_modal_4" className="modal md:ml-[120px]" ref={modalRef}>
         <div className="modal-box w-11/12 md:max-w-[60%]">
+          <h1 className="text-xl font-semibold text-center my-5">
+            Test Information
+          </h1>
           <form className="" onSubmit={handleSubmit(onSubmit)}>
             {/* row 1 */}
             <div className="md:flex gap-4 ">
@@ -248,9 +273,7 @@ const TestRow = ({ test, index, refetch }) => {
             {/* row 4 */}
             <div className="md:flex gap-4">
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">
-                  Price
-                </label>
+                <label className="text-xs font-semibold px-1">Price</label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -263,9 +286,7 @@ const TestRow = ({ test, index, refetch }) => {
               </div>
 
               <div className="md:w-1/2 mb-3">
-                <label className="text-xs font-semibold px-1">
-                  Slot
-                </label>
+                <label className="text-xs font-semibold px-1">Slot</label>
                 <div className="flex flex-col">
                   <input
                     type="text"
@@ -306,6 +327,59 @@ const TestRow = ({ test, index, refetch }) => {
                   </span>
                 </button>
               </div>
+              <div className="md:w-1/2">
+                <form method="dialog" className="flex justify-center">
+                  {/* if there is a button, it will close the modal */}
+                  <button className=" w-[70%] text-xl text-white relative px-5 py-2 font-semibold group">
+                    <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-[18deg] bg-gradient-to-r from-[#24BAD2] to-[#31EDAF] group-hover:bg-[#32CC32] group-hover:skew-x-[18deg]"></span>
+                    <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-[18deg] bg-gradient-to-r from-[#24BAD2] to-[#31EDAF] group-hover:bg-gradient-to-r hover:from-[#31EDAF] hover:to-[#24BAD2] group-hover:-skew-x-[18deg]"></span>
+
+                    <span className="flex items-center justify-center gap-2 relative">
+                      <span className="">close</span>{" "}
+                    </span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </form>
+        </div>
+      </dialog>
+
+      {/* modal - 2 */}
+      <dialog id="my_modal_4" className="modal md:ml-[120px]" ref={modalRef2}>
+        <div className="modal-box w-11/12 md:max-w-[60%]">
+          <h1 className="text-xl font-semibold text-center my-5">
+            All Reservation For This Test
+          </h1>
+          <form>
+            <div className="mb-5">
+              {reserve.length < 1 ? (
+                <p className="text-center">No one has booked yet</p>
+              ) : (
+                <div className="text-xs md:text-[16px] pl-4">
+                  <div className="grid grid-cols-10 text-center gap-3">
+                    <div className="font-bold w-fit">NO</div>
+                    <div className="font-bold col-span-2">Test Name</div>
+                    <div className="font-bold col-span-3">User Email</div>
+                    <div className="font-bold col-span-2">Status</div>
+                    <div className="font-bold col-span-2">Date</div>
+                  </div>
+                  {reserve.map((res, index) => (
+                    <>
+                      <div className="grid grid-cols-10 items-center text-center mt-3 gap-3">
+                        <div className="w-fit">{index + 1}. </div>
+                        <div className="col-span-2">{res.name}</div>
+                        <div className="col-span-3">{res.email}</div>
+                        <div className="col-span-2">{res.status}</div>
+                        <div className="col-span-2">{res.date}</div>
+                      </div>
+                    </>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex justify-center">
               <div className="md:w-1/2">
                 <form method="dialog" className="flex justify-center">
                   {/* if there is a button, it will close the modal */}

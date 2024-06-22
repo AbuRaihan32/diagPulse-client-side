@@ -133,18 +133,18 @@ const BannerCard = ({ banner, refetch }) => {
             <h6 className="mb-4 block font-sans text-base font-semibold leading-relaxed tracking-normal text-red-600 antialiased">
               Expire In : {expireDate}
             </h6>
-            <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-[#072070]">
+            <h4 className="mb-2 block font-sans text-xl md:text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-[#072070]">
               {title}
             </h4>
-            <p className="mb-3 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+            <p className="mb-3 block font-sans text-xs md:text-base font-normal leading-relaxed text-gray-700 antialiased">
               {text}
             </p>
             <div className="flex gap-8 items-center">
-              <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal antialiased">
+              <h6 className="mb-4 block font-sans text-xs md:text-base font-semibold uppercase leading-relaxed tracking-normal antialiased">
                 Coupon Code : {couponCode}
               </h6>
 
-              <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal antialiased">
+              <h6 className="mb-4 block font-sans text-xs md:text-base font-semibold uppercase leading-relaxed tracking-normal antialiased">
                 Discount Rate : {discountRate}
               </h6>
             </div>
