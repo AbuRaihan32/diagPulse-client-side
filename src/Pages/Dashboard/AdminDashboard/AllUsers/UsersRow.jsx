@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { FaFileDownload } from "react-icons/fa";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas-pro";
-import SectionHeder from "../../../../Components/SectionHeder";
+import InfoRow from "./InfoRow";
 
 const UsersRow = ({ user, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -237,103 +237,82 @@ const UsersRow = ({ user, index, refetch }) => {
       {/* modal 2 */}
       <dialog id="my_modal_4" className="modal md:ml-[120px]" ref={modalRef2}>
         <div className="modal-box w-11/12 md:max-w-[60%] ">
-          <div className="w-full " ref={printRef}>
-            <div className="w-full px-5 md:px-10">
-              <SectionHeder header="User Details Info"></SectionHeder>
-              <div>
-                {/* row 1 */}
-                <div className="md:flex gap-4">
-                  <div className="w-full mb-3">
-                    <label className="text-xs font-semibold px-1">
-                      Your Name
-                    </label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
-                        {name}
+          <div className="w-full ">
+            <div className="">
+              <div ref={printRef}>
+                <div className="w-full pt-5 p-3 lg:pl-16">
+                  <h1 className="text-2xl font-bold my-5 text-center">
+                    User Details Information
+                  </h1>
+                  {/* row 1 */}
+                  <div className="md:flex gap-7">
+                    <div className="w-full mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">Name:</span> {name}
+                      </p>
+                    </div>
+
+                    <div className="w-full mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">Email:</span> {email}
                       </p>
                     </div>
                   </div>
 
-                  <div className="w-full mb-3">
-                    <label className="text-xs font-semibold px-1">
-                      Your Email
-                    </label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
-                        {email}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* row 2 */}
-                <div className="md:flex gap-4">
-                  <div className="w-full mb-3">
-                    <label className="text-xs font-semibold px-1">
-                      Photo URL
-                    </label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                  {/* row 2 */}
+                  <div className="md:flex gap-7">
+                    <div className="w-full mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">Image URL:</span>{" "}
                         {image}
                       </p>
                     </div>
-                  </div>
-                </div>
 
-                {/* row 3 */}
-                <div className="md:flex gap-4">
-                  <div className="md:w-1/2 mb-3">
-                    <label className="text-xs font-semibold px-1">
-                      District
-                    </label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
-                        {district}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="md:w-1/2 mb-3">
-                    <label className="text-xs font-semibold px-1">
-                      Upazila
-                    </label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                    <div className="w-full mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">Upazila:</span>{" "}
                         {upazila}
                       </p>
                     </div>
                   </div>
-                </div>
 
-                {/* row 4 */}
-                <div className="md:flex gap-4">
-                  <div className="md:w-1/2 mb-3">
-                    <label className="text-xs font-semibold px-1">Status</label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                  {/* row 3 */}
+                  <div className="md:flex gap-7">
+                    <div className="md:w-1/2 mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">District:</span>{" "}
+                        {district}
+                      </p>
+                    </div>
+
+                    <div className="md:w-1/2 mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">Status:</span>{" "}
                         {status}
                       </p>
                     </div>
                   </div>
 
-                  <div className="md:w-1/2 mb-3">
-                    <label className="text-xs font-semibold px-1">
-                      Blood Group
-                    </label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
+                  {/* row 4 */}
+                  <div className="md:flex gap-7">
+                    <div className="md:w-1/2 mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">Blood Group:</span>{" "}
                         {blood}
+                      </p>
+                    </div>
+
+                    <div className="md:w-1/2 mb-3">
+                      <p>
+                        <span className="font-bold mr-1 ">Role:</span> {role}
                       </p>
                     </div>
                   </div>
 
-                  <div className="md:w-1/2 mb-3">
-                    <label className="text-xs font-semibold px-1">Role</label>
-                    <div className="flex flex-col border py-2">
-                      <p className="w-full py-2 px-3 rounded-lg  border-gray-200">
-                        {role}
-                      </p>
-                    </div>
+                  {/* row 4 */}
+                  <p className="font-bold text-xl mt-1">Booked Tests :</p>
+                  <div className="">
+                    <InfoRow email={email}></InfoRow>
                   </div>
                 </div>
               </div>
