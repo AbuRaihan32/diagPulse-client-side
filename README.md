@@ -73,6 +73,17 @@ Admin Password: Aa3211@
 
     11. Who can see his upcoming appointment test result and all his data, and can change his data if he wants.
 
+The technologies which i have used :
+   1. react.js
+   2. javaScript
+   3. tailwind
+   4. mongodb
+   5. express.js
+   6. node.js
+   7. firebase
+
+
+
 The npm package names which i have used for the challenges task:
 
 1.
