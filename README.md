@@ -33,25 +33,19 @@ My Website Firebase Live Link is :
 
     10. Who can see his upcoming appointment test result and all his data, and can change his data if he wants.
 
-
-
  <br/>
 Admin Email: abumahfuz3211@gmail.com <br/>
 Admin Password: Aa3211@
 
 <br/>
- <br/>
- 
-
-
-
+<br/>
  
  To run this application locally:
  
     1. Clone the Repository:
         First, clone client-side repository to your local machine using Git.
      
-        git clone https://github.com/your-username/your-repository.git
+        git clone https://github.com/diagPulse-client-side/your-repository.git
         cd your-repository
 
 
@@ -76,31 +70,17 @@ Admin Password: Aa3211@
         After installing dependencies, you can start the development server by running:
 
         npm run dev
-
-    
+ 
  <br/>
 
 The technologies which i have used :
-   1. react.js
-   2. javaScript
-   3. tailwind
-   4. mongodb
-   5. express.js
-   6. node.js
-   7. firebase
-
+   1. react.js     2. javaScript    3. tailwind    4. mongodb    5. express.js    6. node.js    7. firebase
 
 
 The npm package names which i have used for the challenges task:
 
-1.
+1. - [@AOS-Package](https://www.npmjs.com/package/aos) This package I used to animate the Estate section of my home page.
 
-- [@AOS-Package](https://www.npmjs.com/package/aos) This package I used to animate the Estate section of my home page.
+2. - [@React-Hook-form](https://react-hook-form.com/) I have used this package to collect data for my form. It is used in login and register pages.
 
-2.
-
-- [@React-Hook-form](https://react-hook-form.com/) I have used this package to collect data for my form. It is used in login and register pages.
-
-3.
-
-- [@Lottie-react](https://react-hook-form.com/) I have used this package to collect data for my form. It is used in login and register pages.
+3. - [@Lottie-react](https://react-hook-form.com/) I have used this package to collect data for my form. It is used in login and register pages.
