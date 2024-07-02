@@ -17,8 +17,45 @@ My Website Firebase Live Link is :
 
 - [@DiagPulse-Live-Link](https://diagpulse.web.app) Click Here For Visit live site.
 
-# Admin Email: abumahfuz3211@gmail.com
-# Admin Password: Aa3211@
+ <br/>
+Admin Email: abumahfuz3211@gmail.com <br/>
+Admin Password: Aa3211@
+
+<br/>
+ <br/>
+ To run this application locally:
+ 
+    1. Clone the Repository:
+        First, clone client-side repository to your local machine using Git.
+     
+        git clone https://github.com/your-username/your-repository.git
+        cd your-repository
+
+
+    2. Install Dependencies:
+        Once you have the repository cloned, navigate to the project directory (where package.json is located) using the terminal or command prompt.
+        Run the following command to install the necessary dependencies (this will install all libraries and packages your project needs as specified in package.json):
+        
+        npm install
+
+    3. Add environment variables in ".env.local"
+            VITE_APIKEY=AIzaSyB7BaLdeWcXsLCxh9jSdjM4TKbPC7adiMw
+            VITE_AUTHDOMAIN=diagpulse.firebaseapp.com
+            VITE_PROJECTID=diagpulse
+            VITE_STORAGEBUCKET=diagpulse.appspot.com
+            VITE_MESSAGINGSENDERID=975504707577
+            VITE_APPID=1:975504707577:web:6c768059368ab5dc0df728
+            VITE_IMAGE_HOSTING_KEY=963cfeca0b5e42fdf85c96d0a9452d13
+            VITE_Payment_PK=pk_test_51PLfqHKeDfIf7oPBAfmLETKiN4KGHRmG9LUhM2VmPBOyLDfeH5pBcP6wqPQPkiv7yvsVrtjT0dv1H5yNEdVfGpke00Tv7deJFX
+
+    
+    4. Run the Development Server:
+        After installing dependencies, you can start the development server by running:
+
+        npm run dev
+
+    
+ <br/>
 
 10 bullet points features and characteristics:
 
