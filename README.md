@@ -9,12 +9,43 @@ My Website Firebase Live Link is :
 
 - [@DiagPulse-Live-Link](https://diagpulse.web.app) Click Here For Visit live site.
 
+
+
+10 bullet points features and characteristics:
+
+    1. A payment system has been implemented so users can make payments through Stripe.
+
+    2. Added pagination to All Tests page.
+
+    3. Separate dashboards are created for admin and normal users.
+
+    4. Admin can block any user if he wants. Blocked user will not have access to anything including his dashboard.
+
+    5. The admin can add any banner from the admin panel if he wants and can remove it if he wants.
+
+    6. Two charts are used based on test bookings and reservation status.
+
+    7. Admin can give admin role to any user if he wants. If you want, you can delete any user.
+
+    8. Admin can see all reservations of specific user by searching by his/her email.
+
+    9. Users can download all the data of a particular user in PDF format if they want.
+
+    10. Who can see his upcoming appointment test result and all his data, and can change his data if he wants.
+
+
+
  <br/>
 Admin Email: abumahfuz3211@gmail.com <br/>
 Admin Password: Aa3211@
 
 <br/>
  <br/>
+ 
+
+
+
+ 
  To run this application locally:
  
     1. Clone the Repository:
@@ -48,30 +79,6 @@ Admin Password: Aa3211@
 
     
  <br/>
-
-10 bullet points features and characteristics:
-
-    1. There is a coupon code on the banner, which the user can copy and apply to the payment option to get a discount.
-
-    2. A payment system has been implemented so users can make payments through Stripe.
-
-    3. Added pagination to All Tests page.
-
-    4. Separate dashboards are created for admin and normal users.
-
-    5. Admin can block any user if he wants. Blocked user will not have access to anything including his dashboard.
-
-    6. The admin can add any banner from the admin panel if he wants and can remove it if he wants.
-
-    7. Two charts are used based on test bookings and reservation status.
-
-    8. Admin can give admin role to any user if he wants. If you want, you can delete any user.
-
-    9. Admin can see all reservations of specific user by searching by his/her email.
-
-    10. Users can download all the data of a particular user in PDF format if they want.
-
-    11. Who can see his upcoming appointment test result and all his data, and can change his data if he wants.
 
 The technologies which i have used :
    1. react.js
