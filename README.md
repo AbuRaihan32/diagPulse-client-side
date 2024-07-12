@@ -11,7 +11,7 @@ My Website Firebase Live Link is :
 
 
 
-10 bullet points features and characteristics:
+10 bullet points features:
 
     1. A payment system has been implemented so users can make payments through Stripe.
 
@@ -74,7 +74,7 @@ Admin Password: Aa3211@
  <br/>
 
 The technologies which i have used :
-   1. react.js     2. javaScript    3. tailwind    4. mongodb    5. express.js    6. node.js    7. firebase
+   1. react.js     2. javaScript    3. tailwindCss      4. firebase    5. react-router-dom    6. axios    7. tanstack query
 
 
 The npm package names which i have used for the challenges task:
