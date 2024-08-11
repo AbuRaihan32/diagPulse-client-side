@@ -171,6 +171,7 @@ const UsersRow = ({ user, index, refetch }) => {
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     {...register("role")}
                   />
+                  <p className="text-xs font-semibold ml-1 text-[#1e5744]">Please click on the field After Change</p>
                   <div
                     onClick={() => setChangeRole(!changeRole)}
                     className="absolute right-2 top-[4px] text-xl"
@@ -192,6 +193,7 @@ const UsersRow = ({ user, index, refetch }) => {
                     className="w-full py-2 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     {...register("status")}
                   />
+                  <p className="text-xs font-semibold ml-1 text-[#1e5744]">Please click on the field After Change</p>
                   <div
                     onClick={() => setChangeStatus(!changeStatus)}
                     className="absolute right-2 top-[4px] text-xl"

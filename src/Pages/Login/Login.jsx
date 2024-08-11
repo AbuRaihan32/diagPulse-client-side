@@ -54,8 +54,8 @@ const Login = () => {
         <title>DiagPulse| Login</title>
       </Helmet>
       <div className="bg-cover bg-bottom bg-fixed rounded-3xl">
-        <div className="bg-[#2FEBB0] bg-opacity-70 flex items-center justify-center px-5 py-5">
-          <div className="bg-gray-100 bg-opacity-60 text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-full overflow-hidden max-w-[1000px] mt-8">
+        <div className="flex items-center justify-center px-5 py-5">
+          <div className="bg-gray-100 bg-opacity-60 text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-full overflow-hidden max-w-[1000px] mt-8 rounded-2xl">
             <div className="md:flex w-full">
               <div className="hidden md:flex items-center justify-center w-[40%] bg-gradient-to-r from-[#24BAD2] to-[#31EDAF] py-10 px-10">
                 <Lottie animationData={log}></Lottie>

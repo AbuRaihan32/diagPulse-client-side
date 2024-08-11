@@ -14,9 +14,18 @@ const ProCard = ({ pro, index }) => {
             <span className="">{index + 1}</span>
           </div>
           <div className="flex-grow ">
-            <h3 className="font-semibold group-hover:text-white">{title}</h3>
+            <h3
+              data-aos="fade-right"
+              data-aos-easing="linear"
+              data-aos-duration="500"
+              className="font-semibold group-hover:text-white"
+            >
+              {title}
+            </h3>
             <div className="divider -my-1 group-hover:divider-accent"></div>
-            <p className="text-base text-body-color leading-relaxed my-2">
+            <p data-aos="fade-right"
+              data-aos-easing="linear"
+              data-aos-duration="500" className="text-base text-body-color leading-relaxed my-2">
               <ul className="text-xs">
                 <li className="flex items-start gap-1">
                   <AiOutlineCaretRight className=" text-[#24BAD2] text-[18px] w-5"></AiOutlineCaretRight>{" "}
@@ -32,12 +41,16 @@ const ProCard = ({ pro, index }) => {
                 </li>
               </ul>
             </p>
-            <p className="text-[15px]">
+            <p data-aos="fade-right"
+              data-aos-easing="linear"
+              data-aos-duration="500" className="text-[15px]">
               <span className=" font-bold group-hover:text-white">Date :</span>{" "}
               {dates}
             </p>
           </div>
-          <div className="-mb-2">
+          <div data-aos="fade-right"
+              data-aos-easing="linear"
+              data-aos-duration="500" className="-mb-2">
             <Link className="relative bg-[#E1F6F9] inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full group mr-2">
               <span className="h-48 w-full rounded rotate-[-40deg] bg-[#2EE9B1] absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
               <span className="flex items-center justify-center gap-2 relative text-center w-full transition-colors duration-300 ease-in-out group-hover:text-white">
