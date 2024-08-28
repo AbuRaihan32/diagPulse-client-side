@@ -21,7 +21,7 @@ const CouponCode = ({code}) => {
 
   return (
     <div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center justify-center lg:justify-start space-x-2">
         <span
           id="cpnCode"
           className="border-dashed border border-[#3ed1a5] text-[#0F2976] px-4 py-2 rounded-l"

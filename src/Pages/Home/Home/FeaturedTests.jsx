@@ -28,7 +28,7 @@ const FeaturedTests = () => {
 
   return (
     <div className="mt-20">
-      <div className="w-[60%] mx-auto">
+      <div className="w-[90%] md:w-[60%] mx-auto">
         <SectionHeder
           header={"Our Amazing Featured Test"}
           description={

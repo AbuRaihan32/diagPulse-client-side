@@ -114,7 +114,7 @@ const AdminHome = () => {
   return (
     <div className=" mt-10">
       <h1 className="text-4xl my-5">Hello {user.displayName}!</h1>
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center md:border md:px-6 md:py-3 rounded-2xl">
+      <div className="flex  flex-col md:flex-row md:justify-between md:items-center md:border md:px-6 md:py-3 rounded-2xl">
         <div className="w-1/2">
           <div className="w-[300px] h-[300px] bg-gradient-to-r from-[#25BCCF] to-[#2EE9B1] rounded-2xl flex items-center justify-center">
             <div className="avatar">

@@ -14,17 +14,17 @@ const BannerSlides = ({ banner }) => {
     <section style={bgImageStyle} className="rounded-3xl">
       <div className="mx-auto max-w-screen-xl h-vh lg:flex lg:h-[500px] lg:items-center relative rounded-3xl">
         <div className="lg:flex justify-between items-center bg-gray-50 bg-opacity-80 rounded-3xl">
-          <div className="w-full text-start ltr:sm:text-left rtl:sm:text-right p-5 lg:pl-24 lg:px-32 gap-10 ">
-            <h1 className="text-3xl font-extrabold sm:text-5xl text-[#0F2976]">
+          <div className="w-full text-center lg:text-start p-5 lg:pl-24 lg:px-32 gap-10 ">
+            <h1 className="text-4xl font-extrabold sm:text-5xl text-[#0F2976]">
               {banner.title}
             </h1>
 
-            <p className="mt-2 max-w-lg sm:text-xl/relaxed text-black">{banner.text}</p>
+            <p className="mt-2  text-black">{banner.text}</p>
             <div className="mt-3">
               <CouponCode code={banner.couponCode}></CouponCode>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center lg:justify-start">
               <p className="text-sm w-fit mt-2 text-red-700 font-medium">
                 Discount Rate : {banner.discountRate}
               </p>
@@ -33,7 +33,7 @@ const BannerSlides = ({ banner }) => {
               </p>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-4 text-center">
+            <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4 text-center">
               <Link
                 to={"/login"}
                 className="relative border inline-flex items-center justify-start px-7 py-2 overflow-hidden font-medium transition-all rounded-full bg-[#0F2976] group mr-2 text-white"
